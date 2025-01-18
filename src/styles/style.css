@@ -1,0 +1,13 @@
+body {
+font-size: 4rem;
+letter-spacing: 1rem;
+text-transform: uppercase;
+font-family: "thermal-variable", sans-serif;
+font-variation-settings: "opsz" 100, "wght" 200;
+
+}
+
+h1 {
+    font-family: "archivo-variable", sans-serif;
+    font-variation-settings: "wdth" 100, "wght" 400;
+}
