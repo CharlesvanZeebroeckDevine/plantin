@@ -1,0 +1,74 @@
+[
+  {
+    "year": 1549,
+    "title": "Arrival in Antwerp",
+    "location": "Lombardenvest",
+    "description": "Plantin moves to Antwerp with his family. He begins working as a bookbinder and studies Dutch to integrate into the city's cultural and business environment.",
+    "image": "./src/assets/img/map/1549.jpg",
+    "reference": "The Arrival at St. Anneke, with view of Antwerp, Hendrik van Minderhout and Jan van Helmont",
+    "coordinates": { "x": 1319, "y": 152 }
+  },
+  {
+    "year": 1552,
+    "title": "Setting up the First Workshop",
+    "location": "Twaalfmaandenstraat",
+    "description": "Plantin establishes a small bookbinding workshop on Twaalfmaandenstraat near Antwerp’s stock exchange. This marks the early foundation of his entrepreneurial journey.",
+    "image": "./src/assets/img/map/1552.jpg",
+    "reference": "Coloured print after a 16th-century copper engraving by Petrus Van der Borch",
+    "coordinates": { "x": 751, "y": 916 }
+  },
+  {
+    "year": 1555,
+    "title": "Publishing the First Book",
+    "location": "Kammenstraat",
+    "description": "Plantin publishes his first book, La Institutione di una fanciulla, a guide to educating noble girls. This marks his transition from bookbinder to printer.",
+    "image": "./src/assets/img/map/1555.jpg",
+    "reference": "Cover of Plantin’s first book",
+    "coordinates": { "x": 731, "y": 831 }
+  },
+  {
+    "year": 1561,
+    "title": "Establishment of Le Compas d’Or",
+    "location": "Kammenstraat",
+    "description": "After a brief exile due to accusations of heresy, Plantin returns to Antwerp, reclaims his workshop, and renames it Le Compas d’Or (The Golden Compass). This becomes the brand of his growing press.",
+    "image": "./src/assets/img/map/1561.jpg",
+    "reference": "Blazon: le Compas d'Or and its motto 'Labore et Constantia'",
+    "coordinates": { "x": 375, "y": 375 }
+  },
+  {
+    "year": 1568,
+    "title": "Commission for the Polyglot Bible",
+    "location": "Near the cathedral (workshop)",
+    "description": "The Polyglot Bible is completed after 4 years of intensive work, solidifying Plantin’s reputation across Europe as a master printer.",
+    "image": "./src/assets/img/map/1568.jpg",
+    "reference": "The Polyglot Bible",
+    "coordinates": { "x": 751, "y": 508 }
+  },
+  {
+    "year": 1576,
+    "title": "Expansion to Vrijdagmarkt",
+    "location": "Vrijdagmarkt",
+    "description": "Plantin relocates to a grand new property on Vrijdagmarkt, where his workshop expands to house 16 presses and employ 60 workers, making it the largest in Europe.",
+    "image": "./src/assets/img/map/1576.jpg",
+    "reference": "Picture of the printing presses",
+    "coordinates": { "x": 738, "y": 200 }
+  },
+  {
+    "year": 1585,
+    "title": "Antwerp Falls to Spanish Forces",
+    "location": "Antwerp (the whole city)",
+    "description": "Antwerp suffers a significant political and economic setback after its fall to Spanish forces during the Eighty Years’ War. Plantin’s business adapts, relying on loyal Catholic patrons.",
+    "image": "./src/assets/img/map/1585.jpg",
+    "reference": "Spanish attack on a Flemish village, oil on canvas by Peter Snayers (1592-1667)",
+    "coordinates": { "x": 433, "y": 656 }
+  },
+  {
+    "year": 1589,
+    "title": "Plantin’s Death",
+    "location": "Vrijdagmarkt",
+    "description": "Christophe Plantin passes away, leaving behind a legacy as one of the most influential printers of the Renaissance. The workshop is inherited by his son-in-law, Jan Moretus.",
+    "image": "./src/assets/img/map/1589.jpg",
+    "reference": "Jan Moretus by Paul Rubens",
+    "coordinates": { "x": 796, "y": 277 }
+  }
+]

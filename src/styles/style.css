@@ -1,13 +1,224 @@
-body {
-font-size: 4rem;
-letter-spacing: 1rem;
-text-transform: uppercase;
-font-family: "thermal-variable", sans-serif;
-font-variation-settings: "opsz" 100, "wght" 200;
+@import url('reset.css');
 
-}
-
-h1 {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: none;
+    border: none;
+    font: inherit;
+    text-align: left;
+  }
+  
+  body {
     font-family: "archivo-variable", sans-serif;
     font-variation-settings: "wdth" 100, "wght" 400;
-}
+    line-height: 1.2;
+    color: #1E1919;
+    background-color: #E7E7E7;
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .nav__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .nav__toggle {
+    background: none;
+    border: none;
+  }
+
+  .nav__menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #E7E7E7;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+  }
+  
+  .nav__menu.active {
+    transform: translateX(0);
+  }
+  
+  .nav__close {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .nav__list {
+    list-style: none;
+    padding: 2rem 0;
+    margin: 0;
+  }
+  
+  .nav__list li {
+    margin-bottom: 1.5rem;
+  }
+  
+  .nav__list a {
+    text-decoration: none;
+    font-size: 1.25rem;
+    color: #1E1919;
+  }
+  
+  .nav__cta .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #9e79b9;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  #hero__animation {
+    display: flex;
+    padding: 2rem 0 2rem 0;
+    justify-content: center;
+    align-items: center;
+    width: 100vw; 
+    overflow: hidden; 
+  }
+  
+  dotlottie-player {
+    width: 100%; 
+    max-width: 100vw; 
+    height: auto; 
+  }
+
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  .expandable-text p {
+    overflow: hidden;
+    line-height: 1.2em;
+    white-space: nowrap;
+    transition: max-height 0.3s ease, white-space 0.3s ease;
+  }
+  
+  .expandable-text.expanded p {
+    max-height: none;
+    white-space: normal;
+  }
+  
+  .read-more {
+    margin: 0.5em 0;
+    color: #F1582A;
+  }
+
+  #static-map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Optional padding for spacing */
+    width: 100%; /* Ensure the static map is responsive */
+    max-width: 100%;
+  }
+  
+  #interactive-map {
+    display: none; /* Initially hidden */
+    position: fixed; /* Position the map over the entire screen */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Match the viewport width */
+    height: 100vh; /* Match the viewport height */
+    transform-origin: top left;
+    touch-action: none;
+    background-color: white; /* Ensure no transparency shows the website */
+    z-index: 9; /* Bring it above all other content */
+  }
+
+  .marker-tooltip {
+    position: absolute;
+    background: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10000;
+    pointer-events: none; /* Prevent the tooltip from interfering with touch events */
+    transform: translateY(-50%); /* Offset slightly for better positioning */
+  }
+
+  .info-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  /* Panel styles remain the same */
+  .info-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70vh;
+    background: white;
+    z-index: 10;
+    overflow-y: auto;
+    padding: 20px;
+    border-radius: 1rem 1rem 0 0 ;
+    font-size: 16px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .info-panel h2 {
+    margin-top: 0;
+  }
+  
+  .info-panel img {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .exit-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem;
+    z-index: 11; 
+    background-color: black;
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
