@@ -1,6 +1,7 @@
 @import url('reset.css');
 
 * {
+  color: #1E1919;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -105,7 +106,6 @@
     height: auto; 
   }
 
-
   img {
     max-width: 100%;
     height: auto;
@@ -155,17 +155,8 @@
     z-index: 9; /* Bring it above all other content */
   }
 
-  .marker-tooltip {
-    position: absolute;
-    background: black;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 12px;
-    white-space: nowrap;
-    z-index: 10000;
-    pointer-events: none; /* Prevent the tooltip from interfering with touch events */
-    transform: translateY(-50%); /* Offset slightly for better positioning */
+  #interactive-map text{
+    font-size: 2rem;
   }
 
   .info-overlay {
@@ -177,10 +168,8 @@
     background: rgba(0, 0, 0, 0.5);
     z-index: 9;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
   }
   
-  /* Panel styles remain the same */
   .info-panel {
     position: fixed;
     bottom: 0;
@@ -221,4 +210,94 @@
     font-size: 16px;
     font-weight: bold;
   }
+
   
+
+  .role-card {
+    height:60vh;
+    max-width: 300px;
+    background: #D9D9D9;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .role-card h3 {
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: "thermal-variable", sans-serif;
+    text-transform: uppercase;
+    font-variation-settings: "opsz" 400, "wght" 100;
+    margin-bottom: 1rem;
+  }
+
+  .role-card p {
+    padding: 1rem;
+    background-color: #E7E7E7;
+  }
+
+  .role-card img {
+    display: block;
+    margin: 0 auto;
+    max-height: 200px;
+    color: #939399;
+    padding: 1rem;
+    margin-bottom: 2rem;
+  }
+
+
+  
+#letter-container {
+  position: relative;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.letter,
+.detail-view {
+  width: 100%;
+  overflow: hidden;
+  transition: transform 0.3s ease, z-index 0.3s ease;
+  z-index: 0;
+}
+
+.detail-view {
+  border:black solid 1px;
+}
+
+.letter {
+  transition: top 0.3s ease, z-index 0.3s ease;
+}
+
+.letter-svg {
+  max-width: 100vh;
+  height: 100%;
+}
+
+.letter-title {
+  text-align: center;  
+  font-size: 1.2rem;
+  font-family: "thermal-variable", sans-serif;
+  text-transform: uppercase;
+  font-variation-settings: "opsz" 400, "wght" 100;
+  letter-spacing: 0.3rem;
+  transform: translateY(2rem);
+}
+
+
+.detail-view {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  z-index: 10; /* Make sure the detail view is above */
+}
+
+.detail-view img {
+  width: 30%;
+  border-radius: 8px;
+}

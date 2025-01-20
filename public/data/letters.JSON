@@ -1,0 +1,91 @@
+[
+    {
+      "id": 1,
+      "title": "Philip II of Spain",
+      "who": "Monarch of Spain and a staunch defender of the Catholic faith.",
+      "connection": [
+        "Philip II was the patron of the Polyglot Bible, commissioning Plantin to undertake the monumental project as part of his effort to promote Catholicism during the Reformation.",
+        "He appointed Plantin as the royal typographer (architypographe), granting him significant prestige and financial backing."
+      ],
+      "notableDetail": "Philip II ordered 12 deluxe vellum copies of the Polyglot Bible, underscoring its importance as a political and religious tool.",
+      "img": "./src/assets/img/letter/Phillip.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Arius Montanus",
+      "who": "A Spanish orientalist, theologian, and scholar.",
+      "connection": [
+        "Montanus oversaw the production of the Polyglot Bible, ensuring its scholarly accuracy and linguistic quality.",
+        "He collaborated closely with Plantin, directing translations into Hebrew, Greek, Aramaic, and Syriac."
+      ],
+      "notableDetail": "Montanus was so integral to the project that the Bible is sometimes referred to as the 'Montanus Bible.'",
+      "img": "./src/assets/img/letter/arius_montanus.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Justus Lipsius",
+      "who": "A renowned humanist, classical scholar, and philosopher.",
+      "connection": [
+        "Lipsius had an office within Plantin’s workshop, where he wrote and revised many of his works.",
+        "Plantin printed Lipsius’ influential treatises, including De Constantia, which bolstered the press’s intellectual reputation."
+      ],
+      "notableDetail": "Lipsius’ connection made the Officina Plantiniana a magnet for scholars and intellectuals across Europe.",
+      "img": "./src/assets/img/letter/justus_lipsius.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Laevinus Torrentius",
+      "who": "Theologian, humanist, and bishop of Antwerp.",
+      "connection": [
+        "Torrentius supported Plantin’s religious works, including the Polyglot Bible and other Catholic publications.",
+        "As a local church leader, he helped strengthen Plantin’s ties to Antwerp’s religious community."
+      ],
+      "notableDetail": "Torrentius’ writings, printed by Plantin, reinforced the press’s standing within the Catholic Church.",
+      "img": "./src/assets/img/letter/laevinus_torrentius.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Hendrik Niclaes",
+      "who": "A merchant and leader of the mystical Anabaptist sect known as the 'Family of Love.'",
+      "connection": [
+        "Niclaes provided Plantin with the financial support needed to purchase his first printing press.",
+        "Plantin printed several of Niclaes’ religious works, even though their controversial nature brought scrutiny."
+      ],
+      "notableDetail": "Niclaes’ early backing allowed Plantin to establish himself as a printer, but the association with the Anabaptist movement nearly jeopardized his career.",
+      "img": "./src/assets/img/letter/hendrik_niclaes.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Simon Stevin",
+      "who": "A mathematician, engineer, and innovator from Bruges.",
+      "connection": [
+        "Plantin printed Stevin’s influential works, including La Disme, which introduced the decimal system.",
+        "Their collaboration reflected Plantin’s commitment to publishing cutting-edge scientific texts."
+      ],
+      "notableDetail": "Stevin’s practical applications of mathematics, such as in trade and navigation, aligned with Antwerp’s role as a global trade hub.",
+      "img": "./src/assets/img/letter/simon_stevin.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Cornelis Kiliaan",
+      "who": "A linguist, lexicographer, and corrector.",
+      "connection": [
+        "Kiliaan edited many of Plantin’s multilingual texts and dictionaries, ensuring linguistic accuracy.",
+        "He authored the Dutch-Latin dictionary Etymologicum Teutonicae Linguae, printed by Plantin."
+      ],
+      "notableDetail": "Kiliaan’s meticulous work set a standard for quality in Plantin’s linguistic publications.",
+      "img": "./src/assets/img/letter/cornelis_kiliaan.jpg"
+    },
+    {
+      "id": 8,
+      "title": "Abraham Ortelius",
+      "who": "A cartographer and geographer, known as the creator of the first modern atlas.",
+      "connection": [
+        "Plantin printed Ortelius’ Theatrum Orbis Terrarum, which became a bestseller and a cornerstone of Renaissance cartography.",
+        "Their collaboration symbolized the intersection of art, science, and printing in the Renaissance."
+      ],
+      "notableDetail": "The atlas was not just a collection of maps but a cultural artifact, establishing the Officina Plantiniana as a leader in scientific publishing.",
+      "img": "./src/assets/img/letter/abraham_ortelius.jpg"
+    }
+  ]
+  

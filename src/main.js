@@ -1,3 +1,63 @@
+
+import Swiper from 'swiper';
+import {
+  Navigation,
+  Pagination,
+  EffectFlip,
+  EffectCoverflow,
+  EffectCards,
+} from 'swiper/modules';
+// Import Swiper and module styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-flip';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/effect-cards';
+
+const coverflowCards = () => {
+
+fetch('data/roles.JSON')
+  .then(response => response.json())
+  .then(data => {
+    const swiperWrapper = document.querySelector('.swiper-wrapper');
+    swiperWrapper.innerHTML = data
+      .map(
+        role => `
+          <div class="swiper-slide">
+            <div class="role-card">
+              <img src="${role.svg}" alt="${role.role}">
+              <h3>${role.role}</h3>
+              <p>${role.description}</p>
+              ${role.salary ? `<p><strong>Salary:</strong> ${role.salary}</p>` : ''}
+            </div>
+          </div>
+        `
+      )
+      .join('');
+
+      const swiper = new Swiper('.swiper', {
+        modules: [Navigation, Pagination, EffectFlip, EffectCoverflow, EffectCards],
+        loop: true, // Enable infinite looping
+        centeredSlides: true, // Center the active slide
+        slidesPerView: 1.5, // Slightly show the next/previous slides
+        spaceBetween: 10, // Space between slides
+        effect: 'coverflow',
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        coverflowEffect: {
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: false,
+        },
+      });
+  });
+};
+
 const expandableText = () => {
   const expandableSections = document.querySelectorAll('[data-expandable]');
 
@@ -114,17 +174,10 @@ interactiveMap.addEventListener("touchmove", (e) => {
 interactiveMap.addEventListener("touchend", () => {
   isPanning = false;
 });
-// Handle double-tap to exit fullscreen
-interactiveMap.addEventListener("dblclick", () => {
-  staticMap.style.display = "block";
-  interactiveMap.style.display = "none";
-  currentX = 0;
-  currentY = 0;
-});
 
 
 // Function to create and show the information panel
-function showInfoPanel(data) {
+const showInfoPanel = (data) => {
   // Remove any existing panel and overlay
   const existingPanel = document.querySelector(".info-panel");
   const existingOverlay = document.querySelector(".info-overlay");
@@ -152,6 +205,7 @@ function showInfoPanel(data) {
   // Append the panel and overlay to the body
   document.body.appendChild(overlay);
   document.body.appendChild(panel);
+  
 
   // Add event listener to close panel when tapping the overlay
   overlay.addEventListener("click", () => {
@@ -186,13 +240,125 @@ interactiveMap.addEventListener("touchstart", async (e) => {
     }
   }
 });
-
 };
+
+const fetchData = async () => {
+  try {
+    const response = await fetch('data/letters.JSON');
+    const letters = await response.json();
+    renderLetters(letters);
+  } catch (error) {
+    console.error('Error fetching letters:', error);
+  }
+};
+
+const renderLetters = (letters) => {
+  const container = document.getElementById('letter-container');
+  container.innerHTML = ''; // Clear content
+
+  letters.forEach((letter) => {
+    const letterDiv = document.createElement('div');
+    letterDiv.classList.add('letter');
+
+    const title = document.createElement('div');
+    title.classList.add('letter-title');
+    title.innerText = letter.title;
+
+    const svgContainer = document.createElement('div');
+    svgContainer.classList.add('letter-svg');
+    fetch('./src/assets/svg/letter.svg')
+      .then((res) => res.text())
+      .then((svg) => {
+        svgContainer.innerHTML = svg;
+
+        letterDiv.appendChild(title);
+        letterDiv.appendChild(svgContainer);
+      })
+      .catch((error) => console.error('Error loading SVG:', error));
+
+    container.appendChild(letterDiv);
+
+    letterDiv.addEventListener('click', () => toggleDetail(letterDiv, letter));
+  });
+};
+
+const toggleDetail = (letterDiv, letter) => {
+  const isDetailActive = letterDiv.classList.contains('active');
+
+  if (isDetailActive) {
+    // If already active, revert back to the letter view
+    renderLetterContent(letterDiv, letter);
+    letterDiv.classList.remove('active');
+  } else {
+    // Otherwise, render the detail view
+    renderDetailContent(letterDiv, letter);
+    letterDiv.classList.add('active');
+  }
+};
+
+const renderLetterContent = (letterDiv, letter) => {
+  letterDiv.innerHTML = ''; // Clear content
+
+  const title = document.createElement('div');
+  title.classList.add('letter-title');
+  title.innerText = letter.title;
+
+  const svgContainer = document.createElement('div');
+  svgContainer.classList.add('letter-svg');
+  fetch('./src/assets/svg/letter.svg')
+    .then((res) => res.text())
+    .then((svg) => {
+      svgContainer.innerHTML = svg;
+
+      letterDiv.appendChild(title);
+      letterDiv.appendChild(svgContainer);
+    })
+    .catch((error) => console.error('Error loading SVG:', error));
+};
+
+const renderDetailContent = (letterDiv, letter) => {
+  const detailView = document.createElement('div');
+  detailView.classList.add('detail-view');
+
+  const img = document.createElement('img');
+  img.src = letter.img;
+  img.alt = letter.title;
+  detailView.appendChild(img);
+
+  const title = document.createElement('h2');
+  title.innerText = letter.title;
+  detailView.appendChild(title);
+
+  const who = document.createElement('p');
+  who.innerText = letter.who;
+  detailView.appendChild(who);
+
+  const connections = document.createElement('ul');
+  letter.connection.forEach((conn) => {
+    const li = document.createElement('li');
+    li.innerText = conn;
+    connections.appendChild(li);
+  });
+  detailView.appendChild(connections);
+
+  const notableDetail = document.createElement('p');
+  notableDetail.innerHTML = `<strong>Notable Detail:</strong> ${letter.notableDetail}`;
+  detailView.appendChild(notableDetail);
+
+
+  letterDiv.innerHTML = ''; // Clear the original content
+  letterDiv.appendChild(detailView);
+};
+
+// Initialize the app
+fetchData();
+
 
 const init = () => {
   nav();
   expandableText();
   mobileMap();
+  coverflowCards();
 };
 
 init();
