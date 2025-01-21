@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href=""/>
+    <link rel="icon" type="image/svg+xml" href="./src/assets/svg/Deco1.svg"/>
     <link rel="stylesheet" href="https://use.typekit.net/lml1vsr.css">
     <link rel="stylesheet" href="src/styles/reset.css">
     <link rel="stylesheet" href="src/styles/style.css">
@@ -10,7 +10,6 @@
     <title>Christophe Plantin</title>
   </head>
   <body>
-
     <nav class="nav">
       <div class="nav__logo">
         <svg id="logo" data-name="logo" width="150" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1362.68 229.22">
@@ -73,42 +72,54 @@
         <span class="word2">AND</span>
         <span class="word3">AMBITION</span>
       </h1>
-      <p>From humble beginnings to running <span class="intro_emp">Europe's largest printing press</span>, Christophe Plantin's story is one of courage, strategy, and perseverance.</p>
+      <p class="header_intro">From humble beginnings to running <span class="intro_emp">Europe's largest printing press</span>, Christophe Plantin's story is one of courage, strategy, and perseverance.</p>
       <div id="hero__animation"> 
         <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
         <dotlottie-player src="https://lottie.host/07f8aaa9-6a38-4ac4-9076-0437111cbd5a/tRZVffnkaQ.lottie" background="transparent" speed="1" style="width: 350px" autoplay></dotlottie-player>
       </div>
-      <p>This immersive story brings his world to life, from his powerful connections to the tireless workers who made it all possible.</p>
+      <p class="header_desc">This immersive story brings his world to life, from his powerful connections to the tireless workers who made it all possible.</p>
     </header>
   
     <section id="roughstart">
       <h2>A Rough Start</h2>
-      <div class="expandable-text" data-expandable>
+      <div id="exp1" class="expandable-text" data-expandable>
         <p>
           In the middle of the 16th century, Antwerp was a city of opportunity, its port buzzing with merchants, scholars, and artisans. Among them was a young Frenchman named Christophe Plantin, newly arrived with his family and a head full of ambition. Plantin was a bookbinder by trade, known for his meticulous craftsmanship and skill with leather. He had made a name for himself creating ornate, hand-stitched cassettes for the nobility, and even caught the attention of Gabriel de Zayas, the secretary to King Philip II of Spain.        </p>
         <button class="read-more">Read more...</button>
       </div>
-      <div class="expandable-text" data-expandable>
+      <div id="exp2" class="expandable-text" data-expandable>
         <p>
           But in 1555, fate struck as sharply as the blade of an attacker's sword. One evening, as Plantin walked through the streets of Antwerp carrying a leather case destined for the Spanish king, he was ambushed by drunken men. In the chaos, his shoulder was pierced by an attacker's blade, leaving him unable to continue the physically demanding work of bookbinding.
         </p>
         <button class="read-more">Read more...</button>
       </div>
-      <div class="expandable-text" data-expandable>
+      <div id="exp3" class="expandable-text" data-expandable>
         <p>
           For many, such a blow would have been the end of their career. But Plantin saw it as a chance to reinvent himself. With the help of Hendrik Niclaes, a wealthy merchant and leader of an Anabaptist sect, Plantin purchased a printing press and began a new chapter. His first book rolled off the press in 1555, a modest but well-received work titled “Institution d'une fille de noble”, a guide to educating noble girls. It was the beginning of a journey that would transform him from a skilled artisan into a titan of the printing world.        </p>
         <button class="read-more">Read more...</button>
       </div>
-      <img src="./src/assets/img/metaltype.jpg" alt="Metal type used in printing">
-      <svg><!-- Placeholder for Explore Antwerp SVG --></svg>
+      <span class="metaltype">
+        <img src="./src/assets/img/metaltype.jpg" alt="Metal type used in printing">
+        <span class="ref">(Photograph of metal type pieces)</span>
+      </span>
+      <div class="exploremap">
+        <svg viewBox="0 0 90 126" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_140_2216)">
+          <path d="M37.1554 104.519L37.6189 110.936C39.1317 114.168 39.5642 118.112 40.5884 121.413C40.8721 122.329 40.9295 123.276 41.9978 123.487C42.7987 123.09 42.5822 112.365 42.4477 110.769C41.8848 104.024 37.7926 98.2267 41.1855 91.6805L47.6784 106.993C48.7043 107.763 48.8873 106.813 49.1366 105.863C49.5198 104.387 49.847 98.0299 49.4058 96.7659C48.2233 93.3733 42.221 88.8562 41.4489 86.6626C40.6146 84.2951 42.8689 74.3025 44.0669 71.7553C44.9654 74.2025 46.6006 76.1871 47.6997 78.4967C50.3364 84.0422 50.9133 90.4574 53.653 95.7561C54.5744 95.2218 54.4068 79.9475 53.8431 78.2415C52.6306 74.5429 46.8713 71.721 45.4632 68.7914C44.7101 67.2279 49.0152 62.0964 49.7184 60.2144L53.5988 55.516C53.7472 57.1253 53.7449 60.6134 54.1202 61.9212C54.7459 64.1156 57.7361 67.5798 58.6886 70.2193C59.3951 72.157 59.6028 75.2922 60.2499 77.4083C60.4343 78.0096 61.4769 81.5377 62.0962 81.2349C62.1915 78.3148 64.3981 67.2185 63.6919 65.3102C63.1692 63.8857 59.3445 61.4478 58.1748 59.6408C57.6489 58.8366 55.3646 52.1091 55.509 51.5149L67.8214 38.4346C63.0613 46.7726 65.5515 55.0399 67.8282 63.2344C68.0872 64.1614 67.9679 65.1324 69.1468 65.3489C71.9841 55.3594 71.5407 44.9365 70.8684 34.9093C71.9197 31.9897 83.7719 23.8617 86.507 19.6932C87.7026 17.869 86.175 16.2248 84.8465 17.6608L69.0273 32.7601C64.5546 32.1995 57.8963 29.9512 53.5245 30.24C49.7326 30.4939 38.3476 37.286 35.5252 40.2161C35.0319 40.7284 33.9307 41.9216 34.4226 42.6083L65.3192 35.8601C62.8001 40.7683 57.7589 44.7462 53.967 48.7672L39.8406 48.6799C35.6722 51.2315 24.0821 56.2428 21.1595 59.7721C19.742 61.4831 22.8088 60.7535 23.3468 60.6487C32.8047 58.8523 42.5389 54.3259 51.9 51.8354L42.583 66.9633C41.8194 67.5311 37.1446 67.261 35.592 67.6466C34.5247 67.9112 33.7273 69.0784 33.5011 69.1242C33.3493 69.1519 32.6921 68.1797 31.5787 68.2044C24.9122 68.3516 19.5943 77.4073 15.6872 82.5548C15.9215 83.5073 19.9777 81.4325 20.6494 81.1165C27.6112 77.8381 34.686 72.8252 41.8286 70.0368L38.7553 85.7C35.6484 88.3136 31.1714 88.2412 28.1819 91.024C24.6686 94.2983 20.9104 100.77 18.9097 105.199C26.4979 101.482 32.124 94.6624 38.3895 88.99L37.4436 100.522C31.0168 104.345 26.8854 110.805 22.8696 117.199C23.3769 119.106 31.8221 112.354 32.592 111.548C34.5869 109.479 36.1527 107.3 37.1333 104.524L37.1554 104.519Z" fill="#1E1919"/>
+          </g>
+          <defs>
+          <clipPath id="clip0_140_2216">
+          <rect width="46.2037" height="117.31" fill="white" transform="matrix(0.91388 0.405984 0.405984 -0.91388 0 107.208)"/>
+          </clipPath>
+          </defs>
+          </svg>
+          <p>Explore Antwerp in the 16th century to learn more... </p>
+    </div>
     </section>
   
     <!-- Interactive Map Section -->
     <section id="plantin-in-antwerp">
-      <h2>Explore Antwerp in the 16th Century</h2>
-      <p>
-        The mid-16th century was a time of promise but also peril. The Renaissance had sparked a hunger for knowledge, and the printing press was spreading ideas faster than rulers or clerics could control them. Religious tensions simmered across Europe: Catholics and Protestants battled not just on the battlefield but also in the printed word. Printing could be a powerful tool for propaganda, and printers who backed the wrong side often paid with their lives. Plantin understood this world. He walked a tightrope, navigating the volatile politics of his age while building a business.
-      </p>
+      <p class="taptostart">TAP TO START</p>
       <div id="static-map">
         <img class="map-image" src="./src/assets/img/map.png" alt="Static Map" />
       </div>
@@ -156,23 +167,34 @@
         <text x="816" y="287" fill="black">1589</text>
       </g>
     </svg>    
-    
+    <p class="map-desc">
+      The mid-16th century was a time of promise but also peril. The Renaissance had sparked a hunger for knowledge, and the printing press was spreading ideas faster than rulers or clerics could control them. Religious tensions simmered across Europe: Catholics and Protestants battled not just on the battlefield but also in the printed word. Printing could be a powerful tool for propaganda, and printers who backed the wrong side often paid with their lives. Plantin understood this world. He walked a tightrope, navigating the volatile politics of his age while building a business.
+    </p>
     </section>
   
     <!-- Workshop Section -->
     <section id="workshop">
       <h2>The Rise of a Company</h2>
+      <div class="workshop-container">
+      <div class="flip-container">
+      </div>
+      <div class="workshop-desc1">
       <p>
-        By the mid-1560s, Plantin had turned his workshop, Le Compas d'Or (The Golden Compass), into a force to be reckoned with. He wasn't just a printer; he was a businessman, a strategist, and a visionary. Unlike many printers who operated small, family-run presses, Plantin thought on a grand scale.
+        By the mid-1560s, Plantin had turned his workshop, Le Compas d'Or (The Golden Compass), into a force to be reckoned with. He wasn't just a printer; he was a businessman, a strategist, and a visionary. Unlike many printers who operated small, family-run presses, Plantin thought on a grand scale. <br> <br> He dreamed of an industrial operation, and by 1576, he had achieved it:
       </p>
       <div class="stats">
         <div>16 Presses</div>
         <div>60 Workers</div>
         <div>25,000 Books/Year</div>
       </div>
+    </div>
+      <div class="flip-container2">
+      </div>
+      <div class="workshop-desc2">
       <p>
-        Each worker had a specific role: compositeurs painstakingly set type by hand, working backward to prepare mirrored text for printing; pressiers operated the massive presses, producing 2,500 impressions a day; correcteurs checked texts for errors, ensuring that the final product met Plantin's high standards. Beyond the workshop, artisans like engravers, type founders, and even renowned artists contributed their skills to Plantin's books.
+        Each worker had a specific role: compositeurs painstakingly set type by hand, working backward to prepare mirrored text for printing; pressiers operated the massive presses, producing 2,500 impressions a day; correcteurs checked texts for errors, ensuring that the final product met Plantin's high standards. <br> <br> Beyond the workshop, artisans like engravers, type founders, and even renowned artists contributed their skills to Plantin's books.
       </p>
+    </div>
       <div class="swiper-container">
       <div class="swiper">
         <!-- Additional required wrapper -->
@@ -184,29 +206,50 @@
           <div class="swiper-slide">Slide 4</div>
           <div class="swiper-slide">Slide 5</div>
           <div class="swiper-slide">Slide 6</div>
+          <div class="swiper-slide">Slide 7</div>
+          <div class="swiper-slide">Slide 8</div>
+          <div class="swiper-slide">Slide 9</div>
         </div>
       </div>
+      </div>
+      <div class="flip-container3"></div>
+      <div class="workshop-desc3">
+      <p>
+        Plantin didn’t just rely on talent; he cultivated it. He housed apprentices, employed top scholars, and created a culture of discipline and collaboration. Even so, Plantin’s workers were among the best in Europe, driven by pride in their craft and loyalty to a master who cared about quality. They worked :
+      </p>
+      <div class="stats">
+        <div>14 hours/day</div>
+        <div>6sols/day</div>
+        <div>6day/week</div>
+        <p>(a kg of butter costed 60sols)</p>
+      </div>
+    </div>
+    </div>
     </section>
-  
-    <!-- Polyglot Bible Section -->
+
     <section id="bible">
       <h2>The Polyglot Bible</h2>
       <p>Plantin's crowning achievement came in 1572 with the completion of the Polyglot Bible.</p>
       <img src="./src/assets/img/bible.jpg" alt="The Polyglot Bible">
-      <div>
-        <div>Learn more about The Secrets of the Polyglot Bible</div>
-        <div>Plan your visit</div>
+      <span class="ref">
+        (The Polyglot Bible)
+      </span>
+      <div class="bible-learn">Learn more about it at the museum or in an another interactive story...</div>
+      <div class="bible-cta">
+        <div class="cta-plan">Plan your visit</div>
+        <div class="cta-story">The Secrets of the Polyglot Bible</div>
       </div>
     </section>
   
     <!-- Connections Section -->
     <section id="connections">
       <h2>Friends and Allies</h2>
-      <p>
+      <p class="connections-desc">
         Christophe Plantin knew that talent and connections were the foundation of any great enterprise. He wasn't just a printer; he was a negotiator, a communicator, and a relentless networker. Through letters, meetings, and charm, he built a network of scholars, artists, and patrons that fueled his success.
       </p>
       <div id="letters">
         <div id="letter-container"></div>
+        <div id="drop-zone">Drop a letter here to reveal its details</div>
       </div>
     </section>
   
@@ -217,13 +260,54 @@
         Christophe Plantin died in 1589. His family carried on the business for nine generations, preserving the workshop, now the Plantin-Moretus Museum, a UNESCO World Heritage Site.
       </p>
       <div class="legacy-stats">
-        <div>1,800 Books</div>
-        <div>10,000 kg of Lead Type</div>
-        <div>13,000 Woodblocks</div>
-        <div>80,000 Prints</div>
+        <div><span>1,800</span>books</div>
+        <div><span>10,000 kg</span>of lead type</div>
+        <div><span>13,000</span>woodblocks</div>
+        <div><span>80,000</span>prints</div>
       </div>
+      <p>Visitors today can walk through the rooms where Plantin’s presses once roared, where workers bent over their tasks, and where the ideas of a generation took shape.</p>
     </section>
-  
+  <section id="stories">
+    <h2>The Story Doesn't End Here...</h2>
+    <p>Want to keep learning about Plantin and his legacy? 
+      There are 5 more Stories around his universe to be discovered</p>
+    <div class="stories-container">
+        <div>
+            <span>Jan Moretus: The Keeper of the Compass</span>
+        </div>
+        <div>
+          <span>The Secret of the Polyglot Bible</span>
+        </div>
+        <div>
+          <span>The Workshop that Never Stopped</span>
+        </div>
+        <div>
+          <span>Wifes and Daughters, life in the 16th century</span>
+        </div>
+        <div>
+          <span>From Antwerp to the World</span>
+        </div>
+    </div>
+  </section>
+
+<footer> 
+<h3>Visit Plantin's Home and Workshop</h3>
+<div class="cta-plan">Plan your visit</div>
+<ul class="museum-info">
+  <li>Vrijdagmarkt 22</li>
+  <li>2000 Antwerp</li>
+  <li>Belgium</li>
+  <li>tel. +32 (0)3 221 14 50</li>
+  <li>museum.plantin.moretus@antwerpen.be</li>
+</ul>
+<img src="./src/assets/img/footer.jpg" alt="">
+<ul class="copyright">
+<li>Site by Charles van Zeebroeck</li>
+<li>for Integration 3</li>
+<li>devineKask</li>
+<li>references</li>
+</ul>
+</footer>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

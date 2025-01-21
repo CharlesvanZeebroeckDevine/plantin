@@ -26,10 +26,14 @@ fetch('data/roles.JSON')
         role => `
           <div class="swiper-slide">
             <div class="role-card">
+            <div class="role-card-top">
               <img src="${role.svg}" alt="${role.role}">
               <h3>${role.role}</h3>
+              </div>
+              <div class="role-desc">
               <p>${role.description}</p>
               ${role.salary ? `<p><strong>Salary:</strong> ${role.salary}</p>` : ''}
+              </div>
             </div>
           </div>
         `
@@ -38,38 +42,105 @@ fetch('data/roles.JSON')
 
       const swiper = new Swiper('.swiper', {
         modules: [Navigation, Pagination, EffectFlip, EffectCoverflow, EffectCards],
+        slidesPerView: 1.2,
+        spaceBetween: 20,
         loop: true, // Enable infinite looping
         centeredSlides: true, // Center the active slide
-        slidesPerView: 1.5, // Slightly show the next/previous slides
-        spaceBetween: 10, // Space between slides
         effect: 'coverflow',
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
         },
+        breakpoints: {
+          320: {
+            slidesPerView: 1.4,
+            spaceBetween: 40
+          },
+          // when window width is >= 480px
+          400: {
+            slidesPerView: 1.6,
+            spaceBetween: 60
+          },
+          500: {
+            slidesPerView: 2,
+            spaceBetween: 60
+          },
+          600: {
+            slidesPerView: 2.5,
+            spaceBetween: 100
+          },
+          700: {
+            slidesPerView: 3,
+            spaceBetween: 140
+          },
+        },
         coverflowEffect: {
-          rotate: 50,
+          rotate: 10,
           stretch: 0,
           depth: 100,
-          modifier: 1,
           slideShadows: false,
         },
       });
   });
 };
 
-const expandableText = () => {
+const flipCards = () => {
+  const flipContainers = [
+    document.querySelector('.flip-container'),
+    document.querySelector('.flip-container2'),
+    document.querySelector('.flip-container3'),
+  ];
+
+  fetch('./data/roles.JSON')
+    .then((response) => response.json())
+    .then((roles) => {
+      roles.forEach((role, index) => {
+        const flipCard = document.createElement('div');
+        flipCard.classList.add('role-card');
+
+        flipCard.innerHTML = `
+          <div class="front">
+            <img src="${role.svg}" alt="${role.role}">
+            <h2>${role.role}</h2>
+          </div>
+          <div class="back">
+            <p>${role.description}</p>
+            <p><strong>Salary:</strong> ${role.salary}</p>
+          </div>
+        `;
+
+        // Distribute cards evenly across the three containers
+        const containerIndex = Math.floor(index / 3); // Determine which container (0, 1, 2)
+        if (containerIndex < flipContainers.length) {
+          flipContainers[containerIndex].appendChild(flipCard);
+        }
+      });
+    })
+    .catch((error) => console.error('Error loading roles:', error));
+};
+
+const expandableText = (defaultWidth = '100%') => {
   const expandableSections = document.querySelectorAll('[data-expandable]');
 
   expandableSections.forEach((section) => {
     const button = section.querySelector('.read-more');
     const paragraph = section.querySelector('p');
 
+    // Set initial width of the paragraph
+    paragraph.style.width = defaultWidth;
+
     button.addEventListener('click', () => {
       section.classList.toggle('expanded');
       button.textContent = section.classList.contains('expanded') 
         ? 'Read less...' 
         : 'Read more...';
+
+      // Optional: Dynamically adjust the width on expansion if needed
+      if (section.classList.contains('expanded')) {
+        paragraph.style.width = '100%'; // Example of full width when expanded
+      } else {
+        paragraph.style.width = defaultWidth; // Reset to default when collapsed
+      }
     });
   });
 };
@@ -92,6 +163,236 @@ const nav = () => {
   item.addEventListener('click', () => {
       menu.classList.remove('active');
     });
+};
+
+const LettersInteraction = () => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch('data/letters.JSON');
+      const letters = await response.json();
+
+      // Initialize interaction based on screen width
+      initializeInteraction(letters);
+
+      // Reinitialize on window resize
+      window.addEventListener('resize', () => initializeInteraction(letters));
+    } catch (error) {
+      console.error('Error fetching letters:', error);
+    }
+  };
+
+  const initializeInteraction = (letters) => {
+    const container = document.getElementById('letter-container');
+    container.innerHTML = ''; // Clear existing content
+
+    const dropZone = document.getElementById('drop-zone');
+    if (window.innerWidth >= 840) {
+      if (!dropZone) createDropZone(); // Create drop zone for desktop
+      initDesktopInteraction(letters);
+    } else {
+      if (dropZone) dropZone.remove(); // Remove drop zone for mobile
+      initMobileInteraction(letters);
+    }
+  };
+
+  const initMobileInteraction = (letters) => {
+    const container = document.getElementById('letter-container');
+
+    letters.forEach((letter) => {
+      const letterDiv = createLetterDiv(letter);
+      container.appendChild(letterDiv);
+
+      // Add click-to-reveal behavior
+      letterDiv.addEventListener('click', () => toggleDetail(letterDiv, letter));
+    });
+  };
+
+  const initDesktopInteraction = (letters) => {
+    const container = document.getElementById('letter-container');
+
+    letters.forEach((letter) => {
+      const letterDiv = createLetterDiv(letter);
+      letterDiv.setAttribute('draggable', 'true'); // Enable drag-and-drop
+      letterDiv.dataset.id = letter.id;
+
+      container.appendChild(letterDiv);
+
+      // Add drag-and-drop behavior
+      letterDiv.addEventListener('dragstart', (e) => handleDragStart(e, letter));
+      letterDiv.addEventListener('dragend', handleDragEnd);
+    });
+
+    setupDropZone();
+  };
+
+  const createLetterDiv = (letter) => {
+    const letterDiv = document.createElement('div');
+    letterDiv.classList.add('letter');
+
+    const title = document.createElement('div');
+    title.classList.add('letter-title');
+    title.innerText = letter.title;
+
+    const svgContainer = document.createElement('div');
+    svgContainer.classList.add('letter-svg');
+    fetch('./src/assets/svg/letter.svg')
+      .then((res) => res.text())
+      .then((svg) => {
+        svgContainer.innerHTML = svg;
+        letterDiv.appendChild(title);
+        letterDiv.appendChild(svgContainer);
+      })
+      .catch((error) => console.error('Error loading SVG:', error));
+
+    return letterDiv;
+  };
+
+  const createDropZone = () => {
+    const dropZone = document.createElement('div');
+    dropZone.id = 'drop-zone';
+    dropZone.innerText = 'Drop a letter here to reveal its details';
+    document.getElementById('letters').appendChild(dropZone);
+  };
+
+  const setupDropZone = () => {
+    const dropZone = document.getElementById('drop-zone');
+
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('dragover');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('dragover');
+    });
+
+    dropZone.addEventListener('drop', (e) => handleDrop(e, dropZone));
+  };
+
+  let draggedLetter = null;
+
+  const handleDragStart = (e, letter) => {
+    draggedLetter = letter;
+    e.target.classList.add('active');
+  };
+
+  const handleDragEnd = (e) => {
+    e.target.classList.remove('active');
+  };
+
+  const handleDrop = (e, dropZone) => {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+
+    if (draggedLetter) {
+      renderDetailInDropZone(dropZone, draggedLetter);
+      draggedLetter = null;
+    }
+  };
+
+  const renderDetailInDropZone = (dropZone, letter) => {
+    dropZone.innerHTML = ''; // Clear the drop zone
+    const detailView = document.createElement('div');
+    detailView.classList.add('detail-view');
+
+    const img = document.createElement('img');
+    img.src = letter.img;
+    img.alt = letter.title;
+    detailView.appendChild(img);
+
+    const title = document.createElement('h2');
+    title.innerText = letter.title;
+    detailView.appendChild(title);
+
+    const who = document.createElement('p');
+    who.innerText = letter.who;
+    detailView.appendChild(who);
+
+    const connections = document.createElement('ul');
+    letter.connection.forEach((conn) => {
+      const li = document.createElement('li');
+      li.innerText = conn;
+      connections.appendChild(li);
+    });
+    detailView.appendChild(connections);
+
+    const notableDetail = document.createElement('p');
+    notableDetail.innerHTML = `<strong>Notable Detail:</strong> ${letter.notableDetail}`;
+    detailView.appendChild(notableDetail);
+
+    dropZone.appendChild(detailView);
+
+    // Reset the drop zone after 3 seconds
+    setTimeout(() => {
+      dropZone.innerHTML = 'Drop a letter here to reveal its details';
+    }, 3000);
+  };
+
+  const toggleDetail = (letterDiv, letter) => {
+    const isDetailActive = letterDiv.classList.contains('active');
+    if (isDetailActive) {
+      renderLetterContent(letterDiv, letter);
+      letterDiv.classList.remove('active');
+    } else {
+      renderDetailContent(letterDiv, letter);
+      letterDiv.classList.add('active');
+    }
+  };
+
+  const renderDetailContent = (letterDiv, letter) => {
+    letterDiv.innerHTML = ''; // Clear the content
+
+    const detailView = document.createElement('div');
+    detailView.classList.add('detail-view');
+
+    const img = document.createElement('img');
+    img.src = letter.img;
+    img.alt = letter.title;
+    detailView.appendChild(img);
+
+    const title = document.createElement('h2');
+    title.innerText = letter.title;
+    detailView.appendChild(title);
+
+    const who = document.createElement('p');
+    who.innerText = letter.who;
+    detailView.appendChild(who);
+
+    const connections = document.createElement('ul');
+    letter.connection.forEach((conn) => {
+      const li = document.createElement('li');
+      li.innerText = conn;
+      connections.appendChild(li);
+    });
+    detailView.appendChild(connections);
+
+    const notableDetail = document.createElement('p');
+    notableDetail.innerHTML = `<strong>Notable Detail:</strong> ${letter.notableDetail}`;
+    detailView.appendChild(notableDetail);
+
+    letterDiv.appendChild(detailView);
+  };
+
+  const renderLetterContent = (letterDiv, letter) => {
+    letterDiv.innerHTML = ''; // Reset the original content
+
+    const title = document.createElement('div');
+    title.classList.add('letter-title');
+    title.innerText = letter.title;
+
+    const svgContainer = document.createElement('div');
+    svgContainer.classList.add('letter-svg');
+    fetch('./src/assets/svg/letter.svg')
+      .then((res) => res.text())
+      .then((svg) => {
+        svgContainer.innerHTML = svg;
+        letterDiv.appendChild(title);
+        letterDiv.appendChild(svgContainer);
+      })
+      .catch((error) => console.error('Error loading SVG:', error));
+  };
+
+  fetchData();
 };
 
 const mobileMap = () => {
@@ -242,123 +543,76 @@ interactiveMap.addEventListener("touchstart", async (e) => {
 });
 };
 
-const fetchData = async () => {
-  try {
-    const response = await fetch('data/letters.JSON');
-    const letters = await response.json();
-    renderLetters(letters);
-  } catch (error) {
-    console.error('Error fetching letters:', error);
-  }
+const desktopMap = () => {
+  const div = document.getElementById("info-panel-desktop")
+  const interactiveMap = document.getElementById("interactive-map");
+  const staticMap = document.getElementById("static-map");
+  const markers = document.querySelectorAll(".marker");
+
+  // Show the interactive map directly
+  staticMap.style.display = "none";
+  interactiveMap.style.display = "block";
+
+  // Define the showInfoPanel function specific to desktop
+  const showInfoPanel = (data) => {
+    const mapContainer = document.getElementById("plantin-in-antwerp"); // Parent container
+    let panel = document.querySelector(".info-panel");
+
+    if (!panel) {
+        // Create the panel if it doesn't exist
+        panel = document.createElement("div");
+        panel.className = "info-panel";
+
+        // Append the panel to the map container
+        mapContainer.appendChild(panel);
+    }
+
+    // Update the content of the panel
+    panel.innerHTML = `
+        <h2>${data.title}</h2>
+        <p><strong>Year:</strong> ${data.year}</p>
+        <p><strong>Location:</strong> ${data.location}</p>
+        <p>${data.description}</p>
+        <img src="${data.image}" alt="${data.title}" />
+        <p><small>${data.reference}</small></p>
+    `;
 };
 
-const renderLetters = (letters) => {
-  const container = document.getElementById('letter-container');
-  container.innerHTML = ''; // Clear content
 
-  letters.forEach((letter) => {
-    const letterDiv = document.createElement('div');
-    letterDiv.classList.add('letter');
+  // Attach click event listeners to markers
+  markers.forEach((marker) => {
+      marker.addEventListener("click", async (event) => {
+          const year = event.target.dataset.year;
 
-    const title = document.createElement('div');
-    title.classList.add('letter-title');
-    title.innerText = letter.title;
+          try {
+              // Fetch the JSON data
+              const response = await fetch("data/map.JSON");
+              const mapData = await response.json();
+              const data = mapData.find((item) => item.year === parseInt(year));
 
-    const svgContainer = document.createElement('div');
-    svgContainer.classList.add('letter-svg');
-    fetch('./src/assets/svg/letter.svg')
-      .then((res) => res.text())
-      .then((svg) => {
-        svgContainer.innerHTML = svg;
-
-        letterDiv.appendChild(title);
-        letterDiv.appendChild(svgContainer);
-      })
-      .catch((error) => console.error('Error loading SVG:', error));
-
-    container.appendChild(letterDiv);
-
-    letterDiv.addEventListener('click', () => toggleDetail(letterDiv, letter));
+              if (data) {
+                  showInfoPanel(data); // Display or update the info panel
+              } else {
+                  console.error(`No data found for year: ${year}`);
+              }
+          } catch (error) {
+              console.error("Error fetching map data:", error);
+          }
+      });
   });
 };
-
-const toggleDetail = (letterDiv, letter) => {
-  const isDetailActive = letterDiv.classList.contains('active');
-
-  if (isDetailActive) {
-    // If already active, revert back to the letter view
-    renderLetterContent(letterDiv, letter);
-    letterDiv.classList.remove('active');
-  } else {
-    // Otherwise, render the detail view
-    renderDetailContent(letterDiv, letter);
-    letterDiv.classList.add('active');
-  }
-};
-
-const renderLetterContent = (letterDiv, letter) => {
-  letterDiv.innerHTML = ''; // Clear content
-
-  const title = document.createElement('div');
-  title.classList.add('letter-title');
-  title.innerText = letter.title;
-
-  const svgContainer = document.createElement('div');
-  svgContainer.classList.add('letter-svg');
-  fetch('./src/assets/svg/letter.svg')
-    .then((res) => res.text())
-    .then((svg) => {
-      svgContainer.innerHTML = svg;
-
-      letterDiv.appendChild(title);
-      letterDiv.appendChild(svgContainer);
-    })
-    .catch((error) => console.error('Error loading SVG:', error));
-};
-
-const renderDetailContent = (letterDiv, letter) => {
-  const detailView = document.createElement('div');
-  detailView.classList.add('detail-view');
-
-  const img = document.createElement('img');
-  img.src = letter.img;
-  img.alt = letter.title;
-  detailView.appendChild(img);
-
-  const title = document.createElement('h2');
-  title.innerText = letter.title;
-  detailView.appendChild(title);
-
-  const who = document.createElement('p');
-  who.innerText = letter.who;
-  detailView.appendChild(who);
-
-  const connections = document.createElement('ul');
-  letter.connection.forEach((conn) => {
-    const li = document.createElement('li');
-    li.innerText = conn;
-    connections.appendChild(li);
-  });
-  detailView.appendChild(connections);
-
-  const notableDetail = document.createElement('p');
-  notableDetail.innerHTML = `<strong>Notable Detail:</strong> ${letter.notableDetail}`;
-  detailView.appendChild(notableDetail);
-
-
-  letterDiv.innerHTML = ''; // Clear the original content
-  letterDiv.appendChild(detailView);
-};
-
-// Initialize the app
-fetchData();
-
 
 const init = () => {
   nav();
-  expandableText();
-  mobileMap();
-  coverflowCards();
+  expandableText('90%');
+  if (window.innerWidth >= 840) {
+    desktopMap();
+    flipCards();
+} else {
+    mobileMap();
+    coverflowCards();
+};
+  LettersInteraction();
 };
 
 init();
