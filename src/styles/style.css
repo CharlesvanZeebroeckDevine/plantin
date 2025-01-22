@@ -1,5 +1,18 @@
 @import url('reset.css');
 
+
+#loading {
+  background: url('../assets/Loader.gif') no-repeat center center;
+  background-size: 70%;
+  background-color: #E7E7E7;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+}
+
 :root {
   --color-text: #1E1919;
   --color-sec: #939399;
@@ -770,24 +783,39 @@ width: 100%;
 }
 
 @media (min-width: 840px) {
+
+  #letters {
+    display: flex;
+    justify-content: space-around;
+  }
+
   #letter-container {
-    flex-direction: row;
     justify-content: center;
     gap: 2rem;
   }
 
   .letter {
-    width: 150px;
+    max-width: 20vw;
+    height:auto;
     cursor: grab;
+  }
+
+  .letter-title {
+    font-size: 1rem;
+    padding: 1rem;
   }
 
   .letter:active {
     cursor: grabbing;
   }
 
+
+  .detail-view {
+    padding: 0;
+  }
   #drop-zone {
-    width: 400px;
-    height: 300px;
+    width: 50vw;
+    height: 50vh;
     border: 2px dashed var(--color-border);
     display: flex;
     align-items: center;

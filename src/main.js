@@ -247,13 +247,6 @@ const LettersInteraction = () => {
     return letterDiv;
   };
 
-  const createDropZone = () => {
-    const dropZone = document.createElement('div');
-    dropZone.id = 'drop-zone';
-    dropZone.innerText = 'Drop a letter here to reveal its details';
-    document.getElementById('letters').appendChild(dropZone);
-  };
-
   const setupDropZone = () => {
     const dropZone = document.getElementById('drop-zone');
 
@@ -322,10 +315,6 @@ const LettersInteraction = () => {
 
     dropZone.appendChild(detailView);
 
-    // Reset the drop zone after 3 seconds
-    setTimeout(() => {
-      dropZone.innerHTML = 'Drop a letter here to reveal its details';
-    }, 3000);
   };
 
   const toggleDetail = (letterDiv, letter) => {

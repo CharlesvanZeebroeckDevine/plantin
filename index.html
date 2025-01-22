@@ -10,6 +10,18 @@
     <title>Christophe Plantin</title>
   </head>
   <body>
+    <div id="loading"></div>
+    <script src="/src/jquery.js"></script>
+    <script>
+  function hideLoader() {
+    $('#loading').hide();
+}
+
+$(window).ready(hideLoader);
+
+setTimeout(hideLoader, 7 * 1000);
+    </script>
+    
     <nav class="nav">
       <div class="nav__logo">
         <svg id="logo" data-name="logo" width="150" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1362.68 229.22">
