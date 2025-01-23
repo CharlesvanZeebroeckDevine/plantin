@@ -250,8 +250,9 @@ const setupMusicToggle = () => {
     }
   });
 }
-
 const LettersInteraction = () => {
+  let resizeListener = null;
+
   const fetchData = async () => {
     try {
       const response = await fetch('data/letters.JSON');
@@ -261,7 +262,9 @@ const LettersInteraction = () => {
       initializeInteraction(letters);
 
       // Reinitialize on window resize
-      window.addEventListener('resize', () => initializeInteraction(letters));
+      if (resizeListener) window.removeEventListener('resize', resizeListener);
+      resizeListener = () => initializeInteraction(letters);
+      window.addEventListener('resize', resizeListener);
     } catch (error) {
       console.error('Error fetching letters:', error);
     }
@@ -273,7 +276,7 @@ const LettersInteraction = () => {
 
     const dropZone = document.getElementById('drop-zone');
     if (window.innerWidth >= 840) {
-      if (!dropZone); // Create drop zone for desktop
+      if (dropZone) setupDropZone(); // Create drop zone for desktop
       initDesktopInteraction(letters);
     } else {
       if (dropZone) dropZone.remove(); // Remove drop zone for mobile
@@ -283,54 +286,33 @@ const LettersInteraction = () => {
 
   const initMobileInteraction = (letters) => {
     const container = document.getElementById('letter-container');
-
     letters.forEach((letter) => {
       const letterDiv = createLetterDiv(letter);
       container.appendChild(letterDiv);
 
       // Add click-to-reveal behavior
-      letterDiv.addEventListener('click', () => toggleDetail(letterDiv, letter));
+      letterDiv.addEventListener('click', () => {
+        const isDetailActive = letterDiv.classList.contains('active');
+        renderDetailView(letterDiv, letter, !isDetailActive);
+        letterDiv.classList.toggle('active');
+      });
     });
   };
 
   const initDesktopInteraction = (letters) => {
     const container = document.getElementById('letter-container');
-
-    letters.forEach((letter) => {
+    letters.forEach((letter, index) => {
       const letterDiv = createLetterDiv(letter);
       letterDiv.setAttribute('draggable', 'true'); // Enable drag-and-drop
-      letterDiv.dataset.id = letter.id;
-
       container.appendChild(letterDiv);
+
+        const offset = index * 55; // Adjust the offset value as needed
+        letterDiv.style.transform = `translate(0, ${offset}px)`;
 
       // Add drag-and-drop behavior
       letterDiv.addEventListener('dragstart', (e) => handleDragStart(e, letter));
       letterDiv.addEventListener('dragend', handleDragEnd);
     });
-
-    setupDropZone();
-  };
-
-  const createLetterDiv = (letter) => {
-    const letterDiv = document.createElement('div');
-    letterDiv.classList.add('letter');
-
-    const title = document.createElement('div');
-    title.classList.add('letter-title');
-    title.innerText = letter.title;
-
-    const svgContainer = document.createElement('div');
-    svgContainer.classList.add('letter-svg');
-    fetch('./letter.svg')
-      .then((res) => res.text())
-      .then((svg) => {
-        svgContainer.innerHTML = svg;
-        letterDiv.appendChild(title);
-        letterDiv.appendChild(svgContainer);
-      })
-      .catch((error) => console.error('Error loading SVG:', error));
-
-    return letterDiv;
   };
 
   const setupDropZone = () => {
@@ -364,105 +346,62 @@ const LettersInteraction = () => {
     dropZone.classList.remove('dragover');
 
     if (draggedLetter) {
-      renderDetailInDropZone(dropZone, draggedLetter);
+      renderDetailView(dropZone, draggedLetter, true);
       draggedLetter = null;
     }
   };
 
-  const renderDetailInDropZone = (dropZone, letter) => {
-    dropZone.innerHTML = ''; // Clear the drop zone
-    const detailView = document.createElement('div');
-    detailView.classList.add('detail-view');
-
-    const img = document.createElement('img');
-    img.src = letter.img;
-    img.alt = letter.title;
-    detailView.appendChild(img);
-
-    const title = document.createElement('h2');
-    title.innerText = letter.title;
-    detailView.appendChild(title);
-
-    const who = document.createElement('p');
-    who.innerText = letter.who;
-    detailView.appendChild(who);
-
-    const connections = document.createElement('ul');
-    letter.connection.forEach((conn) => {
-      const li = document.createElement('li');
-      li.innerText = conn;
-      connections.appendChild(li);
-    });
-    detailView.appendChild(connections);
-
-    const notableDetail = document.createElement('p');
-    notableDetail.innerHTML = `${letter.notableDetail}`;
-    detailView.appendChild(notableDetail);
-
-    dropZone.appendChild(detailView);
-
-  };
-
-  const toggleDetail = (letterDiv, letter) => {
-    const isDetailActive = letterDiv.classList.contains('active');
-    if (isDetailActive) {
-      renderLetterContent(letterDiv, letter);
-      letterDiv.classList.remove('active');
+  const renderDetailView = (container, letter, isDetail = true) => {
+    container.innerHTML = ''; // Clear content
+  
+    if (isDetail) {
+      // Generate the HTML for the detail view
+      const detailViewHTML = `
+        <div class="detail-view">
+        <div class="detail-about">
+          <img src="${letter.img}" alt="${letter.title}" />
+        <div class="detail-namedesc">
+          <h2>${letter.title}</h2>
+          <p>${letter.who}</p>
+          </div>
+        </div>
+          <ul>
+            ${letter.connection.map((conn) => `<li>${conn}</li>`).join('')}
+          </ul>
+          <p class="notable-detail">${letter.notableDetail}</p>
+        </div>
+      `;
+  
+      // Insert the HTML into the container
+      container.innerHTML = detailViewHTML;
     } else {
-      renderDetailContent(letterDiv, letter);
-      letterDiv.classList.add('active');
+      fetchAndInjectSVG(container, letter);
     }
   };
 
-  const renderDetailContent = (letterDiv, letter) => {
-    letterDiv.innerHTML = ''; // Clear the content
-
-    const detailView = document.createElement('div');
-    detailView.classList.add('detail-view');
-
-    const img = document.createElement('img');
-    img.src = letter.img;
-    img.alt = letter.title;
-    detailView.appendChild(img);
-
-    const title = document.createElement('h2');
-    title.innerText = letter.title;
-    detailView.appendChild(title);
-
-    const who = document.createElement('p');
-    who.innerText = letter.who;
-    detailView.appendChild(who);
-
-    const connections = document.createElement('ul');
-    letter.connection.forEach((conn) => {
-      const li = document.createElement('li');
-      li.innerText = conn;
-      connections.appendChild(li);
-    });
-    detailView.appendChild(connections);
-
-    const notableDetail = document.createElement('p');
-    notableDetail.innerHTML = `${letter.notableDetail}`;
-    detailView.appendChild(notableDetail);
-
-    letterDiv.appendChild(detailView);
+  const createLetterDiv = (letter) => {
+    const letterDiv = document.createElement('div');
+    letterDiv.classList.add('letter');
+    fetchAndInjectSVG(letterDiv, letter);
+    return letterDiv;
   };
 
-  const renderLetterContent = (letterDiv, letter) => {
-    letterDiv.innerHTML = ''; // Reset the original content
-
-    const title = document.createElement('div');
-    title.classList.add('letter-title');
-    title.innerText = letter.title;
-
+  const fetchAndInjectSVG = (container, letter) => {
     const svgContainer = document.createElement('div');
     svgContainer.classList.add('letter-svg');
+
     fetch('./letter.svg')
       .then((res) => res.text())
       .then((svg) => {
         svgContainer.innerHTML = svg;
-        letterDiv.appendChild(title);
-        letterDiv.appendChild(svgContainer);
+
+        const svgElement = svgContainer.querySelector('svg');
+        const textElement = svgElement.querySelector('#title-text');
+        if (textElement) {
+          textElement.textContent = letter.title;
+        }
+
+        container.appendChild(svgContainer);
       })
       .catch((error) => console.error('Error loading SVG:', error));
   };
