@@ -8,7 +8,7 @@
         "He appointed Plantin as the royal typographer (architypographe), granting him significant prestige and financial backing."
       ],
       "notableDetail": "Philip II ordered 12 deluxe vellum copies of the Polyglot Bible, underscoring its importance as a political and religious tool.",
-      "img": "./src/assets/img/letter/Phillip.jpg"
+      "img": "plantin/src/assets/img/letter/Phillip.jpg"
     },
     {
       "id": 2,
@@ -19,7 +19,7 @@
         "He collaborated closely with Plantin, directing translations into Hebrew, Greek, Aramaic, and Syriac."
       ],
       "notableDetail": "Montanus was so integral to the project that the Bible is sometimes referred to as the 'Montanus Bible.'",
-      "img": "./src/assets/img/letter/arius_montanus.jpg"
+      "img": "plantin/src/assets/img/letter/arius_montanus.jpg"
     },
     {
       "id": 3,
@@ -30,7 +30,7 @@
         "Plantin printed Lipsius’ influential treatises, including De Constantia, which bolstered the press’s intellectual reputation."
       ],
       "notableDetail": "Lipsius’ connection made the Officina Plantiniana a magnet for scholars and intellectuals across Europe.",
-      "img": "./src/assets/img/letter/justus_lipsius.jpg"
+      "img": "plantin/src/assets/img/letter/justus_lipsius.jpg"
     },
     {
       "id": 4,
@@ -41,7 +41,7 @@
         "As a local church leader, he helped strengthen Plantin’s ties to Antwerp’s religious community."
       ],
       "notableDetail": "Torrentius’ writings, printed by Plantin, reinforced the press’s standing within the Catholic Church.",
-      "img": "./src/assets/img/letter/laevinus_torrentius.jpg"
+      "img": "plantin/src/assets/img/letter/laevinus_torrentius.jpg"
     },
     {
       "id": 5,
@@ -52,7 +52,7 @@
         "Plantin printed several of Niclaes’ religious works, even though their controversial nature brought scrutiny."
       ],
       "notableDetail": "Niclaes’ early backing allowed Plantin to establish himself as a printer, but the association with the Anabaptist movement nearly jeopardized his career.",
-      "img": "./src/assets/img/letter/hendrik_niclaes.jpg"
+      "img": "plantin/src/assets/img/letter/hendrik_niclaes.jpg"
     },
     {
       "id": 6,
@@ -63,7 +63,7 @@
         "Their collaboration reflected Plantin’s commitment to publishing cutting-edge scientific texts."
       ],
       "notableDetail": "Stevin’s practical applications of mathematics, such as in trade and navigation, aligned with Antwerp’s role as a global trade hub.",
-      "img": "./src/assets/img/letter/simon_stevin.jpg"
+      "img": "plantin/src/assets/img/letter/simon_stevin.jpg"
     },
     {
       "id": 7,
@@ -74,7 +74,7 @@
         "He authored the Dutch-Latin dictionary Etymologicum Teutonicae Linguae, printed by Plantin."
       ],
       "notableDetail": "Kiliaan’s meticulous work set a standard for quality in Plantin’s linguistic publications.",
-      "img": "./src/assets/img/letter/cornelis_kiliaan.jpg"
+      "img": "plantin/src/assets/img/letter/cornelis_kiliaan.jpg"
     },
     {
       "id": 8,
@@ -85,7 +85,7 @@
         "Their collaboration symbolized the intersection of art, science, and printing in the Renaissance."
       ],
       "notableDetail": "The atlas was not just a collection of maps but a cultural artifact, establishing the Officina Plantiniana as a leader in scientific publishing.",
-      "img": "./src/assets/img/letter/abraham_ortelius.jpg"
+      "img": "plantin/src/assets/img/letter/abraham_ortelius.jpg"
     }
   ]
   

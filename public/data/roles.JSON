@@ -2,7 +2,7 @@
     {
       "id": 1,
       "role": "Plantin & Moretus",
-      "svg": "./src/assets/svg/Plantin.svg",
+      "svg": "plantin/src/assets/svg/Plantin.svg",
       "description": "Plantin was more of a 'white-collar' boss than a hands-on worker. His ink-stained hands were more likely from bookkeeping than from the press."
       ,"salary": "78 sols/day (approximation)"
 
@@ -10,55 +10,55 @@
     {
       "id": 2,
       "role": "Governor",
-      "svg": "./src/assets/svg/governor.svg",
+      "svg": "plantin/src/assets/svg/governor.svg",
       "description": "The workshop's 'inventory manager.' The Governor assigned typefaces to compositors, ensured the letters were in good condition, and organized the type stockroom.",
       "salary": "15 sols/day"
     },
     {
       "id": 3,
       "role": "Typesetters",
-      "svg": "./src/assets/svg/typesetters.svg",
+      "svg": "plantin/src/assets/svg/typesetters.svg",
       "description": "They arranged letters on composing sticks, often backward, to create text for printing. Compositors were paid per 'forme' (printing plate), with more intricate forms earning higher pay.",
       "salary": "8 sols/day"
     },
     {
       "id": 4,
       "role": "Press Operators",
-      "svg": "./src/assets/svg/pressoperators.svg",
+      "svg": "plantin/src/assets/svg/pressoperators.svg",
       "description": "Pressiers worked in pairs to operate the printing presses. One worker inked the forme while the other pressed the paper against it. This labor-intensive job required rhythm and teamwork, as they needed to produce up to 2,500 impressions a day.",
       "salary": "9 sols/day"
     },
     {
       "id": 5,
       "role": "Proofreaders",
-      "svg": "./src/assets/svg/proofreaders.svg",
+      "svg": "plantin/src/assets/svg/proofreaders.svg",
       "description": "Proofreaders were the intellectuals of the workshop. They reviewed manuscripts in Latin, Greek, and other languages, ensuring accuracy before final printing. Despite their scholarly skill, they were often paid less than manual workers.",
       "salary": "6 sols/day"
     },
     {
       "id": 6,
       "role": "Assemblers",
-      "svg": "./src/assets/svg/assemblers.svg",
+      "svg": "plantin/src/assets/svg/assemblers.svg",
       "description": "Assemblers folded, sorted, and collated printed sheets into book signatures. They often worked long hours to meet deadlines and were the final hands to touch the product before it left the workshop.",
       "salary": "4 sols/day"
     },
     {
         "id": 7,
         "role": "Type founders",
-        "svg": "./src/assets/svg/typefounders.svg",
+        "svg": "plantin/src/assets/svg/typefounders.svg",
         "description": "They worked on Plantin's exclusive fonts, like those by Granjon and Garamond, ensuring quality and precision in every piece. Plantin often bought exclusive rights to type molds to stay ahead of his competitors."
         ,"salary": "remunerated by creation"
       },
       {
         "id": 8,
         "role": "Engravers",
-        "svg": "./src/assets/svg/engravers.svg",
+        "svg": "plantin/src/assets/svg/engravers.svg",
         "description": "Engravers created intricate woodblocks and copperplates for illustrations, maps, and decorative book elements. They collaborated with scholars to ensure accuracy."
         ,"salary": "remunerated by creation"},
       {
         "id": 9,
         "role": "Graphic artists",
-        "svg": "./src/assets/svg/graphicartists.svg",
+        "svg": "plantin/src/assets/svg/graphicartists.svg",
         "description": "They designed title pages, borders, and embellishments for religious and scientific books. Collaborators like Pieter Paul Rubens later worked with Plantin’s successors, but earlier graphic artists paved the way with elaborate woodcut designs."
         ,"salary": "remunerated by creation"
     }

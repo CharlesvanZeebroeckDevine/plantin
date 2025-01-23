@@ -1,5 +1,70 @@
+import './styles/style.css'
+import loadImageAsync from "./utils/loadImageAsync";
+import delay from "./utils/delay";
+
+import { gsap } from "gsap";
+    
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TextPlugin } from "gsap/TextPlugin";
+
+
+gsap.registerPlugin(ScrollTrigger,TextPlugin);
+
+const $preloaderPercentage = document.querySelector(".preloader__percentage");
+const $preloaderVisual = document.querySelector(".preloader__visual");
+
+let numImagesLoaded = 0;
+let totalImages = 0;
+
+const loader = async () => {
+  $preloaderVisual.classList.add("preloader__visual--has-transition");
+  document.documentElement.classList.add("is-loading");
+  document.querySelector("body").classList.add("overflow-y-hidden");
+
+  // Gather all image paths dynamically
+  const imageElements = document.querySelectorAll("img");
+  const imagePaths = Array.from(imageElements).map((img) => img.src);
+  totalImages = imagePaths.length;
+
+  // Preload images and track progress
+  await Promise.all(
+    imagePaths.map(async (path) => {
+      await loadImageAsync(path);
+      numImagesLoaded++;
+      onProgress();
+    })
+  );
+
+  preloadComplete();
+};
+
+const onProgress = () => {
+  const relativeProgress = numImagesLoaded / totalImages;
+  const progressPercentage = Math.round(relativeProgress * 100);
+  console.log(
+    numImagesLoaded,
+    totalImages,
+    relativeProgress,
+    progressPercentage
+  );
+  $preloaderPercentage.textContent = `${progressPercentage}%`;
+  $preloaderVisual.style.transform = `scale3d(1, ${relativeProgress}, 1)`;
+};
+
+const preloadComplete = async () => {
+  await delay(350); // Add extra time for CSS transition to finish
+  document.querySelector("body").classList.remove("overflow-y-hidden");
+  gsap.to("#loading", {
+    duration: 0.5,
+    autoAlpha: 0,
+    onComplete: () => {
+      document.documentElement.classList.remove("is-loading");
+    },
+  });
+};
 
 import Swiper from 'swiper';
+
 import {
   Navigation,
   Pagination,
@@ -17,7 +82,7 @@ import 'swiper/css/effect-cards';
 
 const coverflowCards = () => {
 
-fetch('data/roles.JSON')
+fetch('/plantin/data/roles.JSON')
   .then(response => response.json())
   .then(data => {
     const swiperWrapper = document.querySelector('.swiper-wrapper');
@@ -91,7 +156,7 @@ const flipCards = () => {
     document.querySelector('.flip-container3'),
   ];
 
-  fetch('./data/roles.JSON')
+  fetch('/plantin/data/roles.JSON')
     .then((response) => response.json())
     .then((roles) => {
       roles.forEach((role, index) => {
@@ -188,7 +253,7 @@ function setupMusicToggle() {
 const LettersInteraction = () => {
   const fetchData = async () => {
     try {
-      const response = await fetch('data/letters.JSON');
+      const response = await fetch('/plantin/data/letters.JSON');
       const letters = await response.json();
 
       // Initialize interaction based on screen width
@@ -255,7 +320,7 @@ const LettersInteraction = () => {
 
     const svgContainer = document.createElement('div');
     svgContainer.classList.add('letter-svg');
-    fetch('./src/assets/svg/letter.svg')
+    fetch('plantin/src/assets/svg/letter.svg')
       .then((res) => res.text())
       .then((svg) => {
         svgContainer.innerHTML = svg;
@@ -542,7 +607,7 @@ interactiveMap.addEventListener("touchstart", async (e) => {
       const year = target.dataset.year;
 
       // Fetch the JSON file and find the relevant data
-      const response = await fetch("data/map.JSON");
+      const response = await fetch("/plantin/data/map.JSON");
       const mapData = await response.json();
       const data = mapData.find((item) => item.year === parseInt(year));
 
@@ -600,7 +665,7 @@ const desktopMap = () => {
 
           try {
               // Fetch the JSON data
-              const response = await fetch("data/map.JSON");
+              const response = await fetch("/plantin/data/map.JSON");
               const mapData = await response.json();
               const data = mapData.find((item) => item.year === parseInt(year));
 
@@ -619,6 +684,7 @@ const desktopMap = () => {
 const init = () => {
   if (window.innerWidth >= 1200) {
     flipCards();
+    desktopMap();
   }
   else if (window.innerWidth >= 840) {
     desktopMap();
@@ -631,6 +697,7 @@ const init = () => {
 };
   LettersInteraction();
   setupMusicToggle();
+  loader();
 };
 
 init();

@@ -4,28 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./src/assets/svg/Deco1.svg"/>
     <link rel="stylesheet" href="https://use.typekit.net/lml1vsr.css">
-    <link rel="stylesheet" href="src/styles/reset.css">
-    <link rel="stylesheet" href="src/styles/style.css">
+    <link rel="stylesheet" href="./src/styles/reset.css">
+    <link rel="stylesheet" href="./src/styles/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Christophe Plantin</title>
   </head>
   <body>
-
     <div id="loading">
-    <script src="./src/jquery.js"></script>
-    <script>
-  const hideLoader = () => {
-    $('#loading').hide();
-}
-
-$(window).ready(hideLoader);
-
-setTimeout(hideLoader, 7 * 1000);
-    </script>
+      <div class="preloader__visual">
+        <h2>Immersive Story for Plantin-Moretus Museum Antwerp</h2>
+      </div>
+      <div class="preloader__percentage">0%</div>
     </div>
 
     <div id="music-toggle">
-      <img id="toggle-icon" src="/src/assets/svg/soundoff.svg" alt="Sound Off">
+      <img id="toggle-icon" src="./src/assets/svg/soundoff.svg" alt="Sound Off">
     </div>
     <audio id="background-music" loop>
       <source src="./src/assets/soundtrack.wav" type="audio/mpeg">
@@ -89,7 +82,6 @@ setTimeout(hideLoader, 7 * 1000);
         </div>
       </div>
     </nav>
-
 
     <header id="header">
       <h1>

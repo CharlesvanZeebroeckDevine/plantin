@@ -1,7 +1,7 @@
 @import url('reset.css');
 
 
-#loading {
+.preloader__visual {
   background: url('../assets/Loader.gif') no-repeat center center;
   background-size: 70%;
   background-color: #E7E7E7;
@@ -11,6 +11,11 @@
   height: 100%;
   width: 100%;
   z-index: 99;
+}
+
+
+.overflow-y-hidden {
+  overflow-y: hidden;
 }
 
 :root {
