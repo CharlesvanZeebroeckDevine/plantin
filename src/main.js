@@ -119,7 +119,7 @@ const flipCards = () => {
     .catch((error) => console.error('Error loading roles:', error));
 };
 
-const expandableText = (defaultWidth = '100%') => {
+const expandableText = (defaultWidth = '90%') => {
   const expandableSections = document.querySelectorAll('[data-expandable]');
 
   expandableSections.forEach((section) => {
@@ -165,6 +165,26 @@ const nav = () => {
     });
 };
 
+function setupMusicToggle() {
+  let isPlaying = false;
+
+  const musicToggle = document.getElementById("music-toggle");
+  const musicIcon = document.getElementById("toggle-icon");
+  const backgroundMusic = document.getElementById("background-music");
+
+  musicToggle.addEventListener("click", () => {
+    if (!isPlaying) {
+      backgroundMusic.play();
+      musicIcon.src = "./src/assets/svg/soundon.svg"; // Update to 'Sound Off' icon
+      isPlaying = true;
+    } else {
+      backgroundMusic.pause();
+      musicIcon.src = "./src/assets/svg/soundoff.svg"; // Update to 'Sound On' icon
+      isPlaying = false;
+    }
+  });
+}
+
 const LettersInteraction = () => {
   const fetchData = async () => {
     try {
@@ -187,7 +207,7 @@ const LettersInteraction = () => {
 
     const dropZone = document.getElementById('drop-zone');
     if (window.innerWidth >= 840) {
-      if (!dropZone) createDropZone(); // Create drop zone for desktop
+      if (!dropZone); // Create drop zone for desktop
       initDesktopInteraction(letters);
     } else {
       if (dropZone) dropZone.remove(); // Remove drop zone for mobile
@@ -484,15 +504,17 @@ const showInfoPanel = (data) => {
 
   // Populate the panel with data
   panel.innerHTML = `
-    <h2>${data.title}</h2>
-    <p>${data.year}</p>
-    <p>${data.location}</p>
-    <p>${data.description}</p>
-    <img src="${data.image}" alt="${data.title}" />
-    <p>${data.reference}</p>
+        <p class="panel-year">${data.year}</p>
+        <h2 class="panel-title">${data.title}</h2>
+        <p class="panel-location">${data.location}</p>
+        <p class="panel-desc">${data.description}</p>
+        <div class="panel-imgcontainer">
+        <img class="panel-img" src="${data.image}" alt="${data.title}" />
+        <p class="panel-ref">${data.reference}</p>
   `;
 
-  // Append the panel and overlay to the body
+
+
   document.body.appendChild(overlay);
   document.body.appendChild(panel);
   
@@ -533,7 +555,6 @@ interactiveMap.addEventListener("touchstart", async (e) => {
 };
 
 const desktopMap = () => {
-  const div = document.getElementById("info-panel-desktop")
   const interactiveMap = document.getElementById("interactive-map");
   const staticMap = document.getElementById("static-map");
   const markers = document.querySelectorAll(".marker");
@@ -544,7 +565,7 @@ const desktopMap = () => {
 
   // Define the showInfoPanel function specific to desktop
   const showInfoPanel = (data) => {
-    const mapContainer = document.getElementById("plantin-in-antwerp"); // Parent container
+    const mapContainer = document.getElementById("antwerp"); // Parent container
     let panel = document.querySelector(".info-panel");
 
     if (!panel) {
@@ -558,12 +579,16 @@ const desktopMap = () => {
 
     // Update the content of the panel
     panel.innerHTML = `
-        <h2>${data.title}</h2>
-        <p><strong>Year:</strong> ${data.year}</p>
-        <p><strong>Location:</strong> ${data.location}</p>
-        <p>${data.description}</p>
-        <img src="${data.image}" alt="${data.title}" />
-        <p><small>${data.reference}</small></p>
+    <div class="panel-container">
+        <p class="panel-year">${data.year}</p>
+        <h2 class="panel-title">${data.title}</h2>
+        <p class="panel-location">${data.location}</p>
+        <p class="panel-desc">${data.description}</p>
+                <div class="panel-imgcontainer">
+        <img class="panel-img" src="${data.image}" alt="${data.title}" />
+        <p class="panel-ref">${data.reference}</p>
+          </div>
+        </div>
     `;
 };
 
@@ -592,16 +617,20 @@ const desktopMap = () => {
 };
 
 const init = () => {
-  nav();
-  expandableText('90%');
-  if (window.innerWidth >= 840) {
-    desktopMap();
+  if (window.innerWidth >= 1200) {
     flipCards();
-} else {
-    mobileMap();
+  }
+  else if (window.innerWidth >= 840) {
+    desktopMap();
     coverflowCards();
+} else if (window.innerWidth < 840){
+    expandableText();
+    nav();
+    coverflowCards();
+    mobileMap();
 };
   LettersInteraction();
+  setupMusicToggle();
 };
 
 init();
