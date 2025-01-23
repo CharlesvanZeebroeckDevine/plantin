@@ -82,7 +82,7 @@ import 'swiper/css/effect-cards';
 
 const coverflowCards = () => {
 
-fetch('/plantin/data/roles.JSON')
+fetch('./data/roles.JSON')
   .then(response => response.json())
   .then(data => {
     const swiperWrapper = document.querySelector('.swiper-wrapper');
@@ -230,21 +230,22 @@ const nav = () => {
     });
 };
 
-function setupMusicToggle() {
-  let isPlaying = false;
+const setupMusicToggle = () => {
 
   const musicToggle = document.getElementById("music-toggle");
   const musicIcon = document.getElementById("toggle-icon");
   const backgroundMusic = document.getElementById("background-music");
 
+  let isPlaying = false;
+
   musicToggle.addEventListener("click", () => {
     if (!isPlaying) {
       backgroundMusic.play();
-      musicIcon.src = "./src/assets/svg/soundon.svg"; // Update to 'Sound Off' icon
+      musicIcon.src = "./soundon.svg";
       isPlaying = true;
     } else {
       backgroundMusic.pause();
-      musicIcon.src = "./src/assets/svg/soundoff.svg"; // Update to 'Sound On' icon
+      musicIcon.src = "./soundoff.svg"; 
       isPlaying = false;
     }
   });
@@ -253,7 +254,7 @@ function setupMusicToggle() {
 const LettersInteraction = () => {
   const fetchData = async () => {
     try {
-      const response = await fetch('/plantin/data/letters.JSON');
+      const response = await fetch('data/letters.JSON');
       const letters = await response.json();
 
       // Initialize interaction based on screen width
@@ -320,7 +321,7 @@ const LettersInteraction = () => {
 
     const svgContainer = document.createElement('div');
     svgContainer.classList.add('letter-svg');
-    fetch('plantin/src/assets/svg/letter.svg')
+    fetch('./letter.svg')
       .then((res) => res.text())
       .then((svg) => {
         svgContainer.innerHTML = svg;
@@ -395,7 +396,7 @@ const LettersInteraction = () => {
     detailView.appendChild(connections);
 
     const notableDetail = document.createElement('p');
-    notableDetail.innerHTML = `<strong>Notable Detail:</strong> ${letter.notableDetail}`;
+    notableDetail.innerHTML = `${letter.notableDetail}`;
     detailView.appendChild(notableDetail);
 
     dropZone.appendChild(detailView);
@@ -441,7 +442,7 @@ const LettersInteraction = () => {
     detailView.appendChild(connections);
 
     const notableDetail = document.createElement('p');
-    notableDetail.innerHTML = `<strong>Notable Detail:</strong> ${letter.notableDetail}`;
+    notableDetail.innerHTML = `${letter.notableDetail}`;
     detailView.appendChild(notableDetail);
 
     letterDiv.appendChild(detailView);
@@ -456,7 +457,7 @@ const LettersInteraction = () => {
 
     const svgContainer = document.createElement('div');
     svgContainer.classList.add('letter-svg');
-    fetch('./src/assets/svg/letter.svg')
+    fetch('./letter.svg')
       .then((res) => res.text())
       .then((svg) => {
         svgContainer.innerHTML = svg;
