@@ -52,13 +52,18 @@ const onProgress = () => {
 };
 
 const preloadComplete = async () => {
-  await delay(350); // Add extra time for CSS transition to finish
+  await delay(6350); // Add extra time for CSS transition to finish
   document.querySelector("body").classList.remove("overflow-y-hidden");
   gsap.to("#loading", {
     duration: 0.5,
     autoAlpha: 0,
     onComplete: () => {
       document.documentElement.classList.remove("is-loading");
+    
+      const lottiePlayer = document.getElementById("header-lottie");
+      if (lottiePlayer) {
+        lottiePlayer.play();
+      }
     },
   });
 };
@@ -150,16 +155,12 @@ fetch('./data/roles.JSON')
 };
 
 const flipCards = () => {
-  const flipContainers = [
-    document.querySelector('.flip-container'),
-    document.querySelector('.flip-container2'),
-    document.querySelector('.flip-container3'),
-  ];
+  const flipContainer = document.querySelector('.workshop-container');
 
   fetch('/plantin/data/roles.JSON')
     .then((response) => response.json())
     .then((roles) => {
-      roles.forEach((role, index) => {
+      roles.forEach((role) => {
         const flipCard = document.createElement('div');
         flipCard.classList.add('role-card');
 
@@ -175,10 +176,8 @@ const flipCards = () => {
         `;
 
         // Distribute cards evenly across the three containers
-        const containerIndex = Math.floor(index / 3); // Determine which container (0, 1, 2)
-        if (containerIndex < flipContainers.length) {
-          flipContainers[containerIndex].appendChild(flipCard);
-        }
+          flipContainer.appendChild(flipCard);
+        
       });
     })
     .catch((error) => console.error('Error loading roles:', error));
@@ -231,25 +230,23 @@ const nav = () => {
 };
 
 const setupMusicToggle = () => {
+  const musicButton = document.getElementById('musicButton');
+    const soundIcon = document.getElementById('soundIcon');
+    const backgroundMusic = document.getElementById('backgroundMusic');
 
-  const musicToggle = document.getElementById("music-toggle");
-  const musicIcon = document.getElementById("toggle-icon");
-  const backgroundMusic = document.getElementById("background-music");
+    musicButton.addEventListener('click', function() {
+        if (backgroundMusic.paused) {
+            backgroundMusic.play();
+            soundIcon.src = './soundon.svg';
+            soundIcon.alt = 'Sound On';
+        } else {
+            backgroundMusic.pause();
+            soundIcon.src = './soundoff.svg';
+            soundIcon.alt = 'Sound Off';
+        }
+    });
+};
 
-  let isPlaying = false;
-
-  musicToggle.addEventListener("click", () => {
-    if (!isPlaying) {
-      backgroundMusic.play();
-      musicIcon.src = "./soundon.svg";
-      isPlaying = true;
-    } else {
-      backgroundMusic.pause();
-      musicIcon.src = "./soundoff.svg"; 
-      isPlaying = false;
-    }
-  });
-}
 const LettersInteraction = () => {
   let resizeListener = null;
 
@@ -629,6 +626,7 @@ const init = () => {
   else if (window.innerWidth >= 840) {
     desktopMap();
     coverflowCards();
+    nav();
 } else if (window.innerWidth < 840){
     expandableText();
     nav();

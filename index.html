@@ -5,24 +5,24 @@
     <link rel="icon" type="image/svg+xml" href="./src/assets/svg/Deco1.svg"/>
     <link rel="stylesheet" href="https://use.typekit.net/lml1vsr.css">
     <link rel="stylesheet" href="./src/styles/reset.css">
-    <link rel="stylesheet" href="./src/styles/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Christophe Plantin</title>
   </head>
   <body>
+    <div class="background-img"></div>
     <div id="loading">
       <div class="preloader__visual">
-        <h2>Immersive Story for Plantin-Moretus Museum Antwerp</h2>
       </div>
       <div class="preloader__percentage">0%</div>
     </div>
 
-    <div id="music-toggle">
-      <img id="toggle-icon" src="./soundoff.svg" alt="Sound Off">
-    </div>
-    <audio id="background-music" loop>
-      <source src="./soundtrack.wav" type="audio/waw">
-    </audio>
+    <button id="musicButton">
+      <img src="./soundoff.svg" alt="Sound Off" id="soundIcon">
+  </button>
+  <audio id="backgroundMusic" loop>
+      <source src="./soundtrack.wav" type="audio/mp3">
+      Your browser does not support the audio element.
+  </audio>
 
     <nav class="nav">
       <div class="nav__logo">
@@ -90,7 +90,7 @@
       <p class="header_intro">From humble beginnings to running <span class="intro_emp">Europe's largest printing press</span>, Christophe Plantin's story is one of courage, strategy, and perseverance.</p>
       <div id="hero__animation"> 
         <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
-        <dotlottie-player src="https://lottie.host/07f8aaa9-6a38-4ac4-9076-0437111cbd5a/tRZVffnkaQ.lottie" background="transparent" speed="1" autoplay></dotlottie-player>
+        <dotlottie-player id="header-lottie" src="https://lottie.host/07f8aaa9-6a38-4ac4-9076-0437111cbd5a/tRZVffnkaQ.lottie" background="transparent" speed="1"></dotlottie-player>
       </div>
       <p class="header_desc">This immersive story brings his world to life, from his powerful connections to the tireless workers who made it all possible.</p>
     </header>
@@ -187,9 +187,14 @@
         <text x="816" y="287" fill="black">1589</text>
       </g>
     </svg>    
+    <div class="map-desc-container">
     <p class="map-desc">
       The mid-16th century was a time of promise but also peril. The Renaissance had sparked a hunger for knowledge, and the printing press was spreading ideas faster than rulers or clerics could control them. Religious tensions simmered across Europe: Catholics and Protestants battled not just on the battlefield but also in the printed word. Printing could be a powerful tool for propaganda, and printers who backed the wrong side often paid with their lives. Plantin understood this world. He walked a tightrope, navigating the volatile politics of his age while building a business.
     </p>
+    <p class="map-desc-desk">
+      In 1555, he published his first book, a modest work on the education of noble girls. It wasn’t revolutionary, but it was enough to put him on the map. From there, he began to expand his catalog, often republishing popular works from Paris and Lyon, a strategic move that helped him gain credibility and funds without the risk of developing original content. <br> <br>A dishonest practice he would later regret, when other printers reprinted his own publications.
+    </p>
+  </div>
   </div>
     </section>
   
@@ -197,20 +202,16 @@
     <section id="workshop">
       <h2>The Rise of a Company</h2>
       <div class="workshop-container">
-      <div class="flip-container">
-      </div>
-      <div class="workshop-desc1">
-      <p>
-        By the mid-1560s, Plantin had turned his workshop, Le Compas d'Or (The Golden Compass), into a force to be reckoned with. He wasn't just a printer; he was a businessman, a strategist, and a visionary. Unlike many printers who operated small, family-run presses, Plantin thought on a grand scale. <br> <br> He dreamed of an industrial operation, and by 1576, he had achieved it:
-      </p>
-      <div class="stats">
-        <div>16 Presses</div>
-        <div>60 Workers</div>
-        <div>25,000 Books/Year</div>
-      </div>
-    </div>
-      <div class="flip-container2">
-      </div>
+        <div class="workshop-desc1">
+          <p>
+            By the mid-1560s, Plantin had turned his workshop, Le Compas d'Or (The Golden Compass), into a force to be reckoned with. He wasn't just a printer; he was a businessman, a strategist, and a visionary. Unlike many printers who operated small, family-run presses, Plantin thought on a grand scale. <br> He dreamed of an industrial operation, and by 1576, he had achieved it:
+          </p>
+          <div class="stats">
+            <div>16 Presses</div>
+            <div>60 Workers</div>
+            <div>25,000 Books/Year</div>
+          </div>
+        </div>
       <div class="workshop-desc2">
       <p>
         Each worker had a specific role: compositeurs painstakingly set type by hand, working backward to prepare mirrored text for printing; pressiers operated the massive presses, producing 2,500 impressions a day; correcteurs checked texts for errors, ensuring that the final product met Plantin's high standards.
@@ -234,10 +235,9 @@
         </div>
       </div>
       </div>
-      <div class="flip-container3"></div>
       <div class="workshop-desc3">
       <p>
-        Plantin didn’t just rely on talent; he cultivated it. He housed apprentices, employed top scholars, and created a culture of discipline and collaboration. Even so, Plantin’s workers were among the best in Europe, driven by pride in their craft and loyalty to a master who cared about quality. <br> <br> They worked :
+        Plantin didn’t just rely on talent; he cultivated it. He housed apprentices, employed top scholars, and created a culture of discipline and collaboration. Even so, Plantin’s workers were among the best in Europe, driven by pride in their craft and loyalty to a master who cared about quality.
       </p>
       <div class="stats">
         <div>14 hours/day</div>
@@ -247,6 +247,7 @@
       </div>
     </div>
     </div>
+  </div>
     </section>
 
     <section id="bible">
@@ -271,7 +272,7 @@
   
     <!-- Connections Section -->
     <section id="connections">
-      <h2>Friends and Allies</h2>
+      <h2 class="connections-title">Friends and Allies</h2>
       <p class="connections-desc">
         Christophe Plantin knew that talent and connections were the foundation of any great enterprise. He wasn't just a printer; he was a negotiator, a communicator, and a relentless networker. Through letters, meetings, and charm, he built a network of scholars, artists, and patrons that fueled his success.
       </p>
@@ -321,6 +322,7 @@
 <footer> 
 <h3>Visit Plantin's Home and Workshop</h3>
 <div class="cta-plan">Plan your visit</div>
+<div class="footer-container">
 <ul class="museum-info">
   <li>Vrijdagmarkt 22</li>
   <li>2000 Antwerp</li>
@@ -329,6 +331,7 @@
   <li>museum.plantin.moretus@antwerpen.be</li>
 </ul>
 <img src="./src/assets/img/footer.jpg" alt="">
+</div>
 <ul class="copyright">
 <li>Site by Charles van Zeebroeck</li>
 <li>for Integration 3</li>
