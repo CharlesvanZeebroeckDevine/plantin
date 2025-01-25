@@ -95,7 +95,6 @@ h1 {
   height: 100%;
 }
 
-
 #hero__animation {
   display: flex;
   padding: 0rem 0 2rem 0;
@@ -146,6 +145,7 @@ h2 {
   font-variation-settings: "wdth" 100, "wght" 300;
   letter-spacing: 0.03rem;
   font-family: var(--font-body);
+  overflow: hidden;
 }
 
 .intro_emp {
@@ -162,6 +162,7 @@ h2 {
   letter-spacing: 0.05rem;
   font-family: var(--font-body);
   max-width: 40ch;
+  overflow: hidden;
 }
 
 .nav {
@@ -290,8 +291,20 @@ h2 {
   font-style: italic;
 }
 
+.header-with-svg {
+  display: flex; /* Make the h2 a flex container */
+  align-items: flex-start; /* Vertically center the text and SVG */
+  gap: 1rem; /* Add some spacing between the text and SVG (optional) */
+}
+
+.svg-container {
+  display: flex; /* Make the span a flex container */
+  align-items: center; /* Vertically center the SVG */
+}
+
 .header-svg {
-  max-width: 2rem;
+  width: 2rem; /* Adjust the size of the SVG as needed */
+  height: auto; /* Maintain aspect ratio */
 }
 
 .exploremap {
@@ -421,7 +434,7 @@ h2 {
 }
 
 .stats {
-padding: 1rem;
+padding: 2rem 0;
 display: flex;
 flex-wrap: wrap;
 flex-direction: row;
@@ -452,6 +465,12 @@ width: 100%;
   padding: 0.5rem;
   color: var(--color-bright-text);
   background-color: #1E1919;
+}
+
+.stats p {
+  font-size: 0.8rem;
+  font-variation-settings: "wdth" 100, "wght" 100;
+
 }
 
 .swiper-wrapper {
@@ -587,6 +606,15 @@ width: 100%;
 
 #connections {
   margin-top: 5rem;
+}
+
+.connections-title {
+  text-align: center;
+  margin: 0rem 0rem 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:1rem;
 }
 
 .connections-desc {
@@ -802,8 +830,18 @@ footer .cta-plan {
   font-variation-settings: "wdth" 100, "wght" 200;
 }
 
+@media (max-width: 500px) {
+.header-svg {
+  display: none;
+}
+}
 
 @media (min-width: 840px) {
+  .header-with-svg {
+    justify-content: flex-end;
+  }
+
+
   header {
     display:grid;
     padding: 0;
@@ -838,7 +876,7 @@ footer .cta-plan {
   }
 
   .read-more {
-    display: none;
+    display: none !important;
   }
   
   .expandable-text p {
@@ -1104,6 +1142,9 @@ width:20rem;
   .connections-title {
     text-align: start;
     margin: 0rem 0rem 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap:1rem;
   }
 
   .connections-desc {
@@ -1352,7 +1393,7 @@ font-size: 1rem;
     display:grid;
     grid-template-columns: repeat(5,20vw);
     grid-template-rows: repeat(3, 33vh);
-    margin-bottom: 10rem;
+    margin-bottom: 2rem;
   }
 
   #hero__animation {
@@ -1407,20 +1448,6 @@ font-size: 1rem;
   .swiper-container {
     display: none;
   }
-
-
-.workshop-desc1 {
-  grid-area:1 /4 /1 /6 ;
-}
-
-.workshop-desc2 {
-  grid-area: 2 / 1 / 2 / 3;
-}
-
-
-.workshop-desc3 {
-  grid-area: 3 / 4 / 3 / 6;
-}
 
   .role-card {
     position: relative;
@@ -1512,7 +1539,27 @@ font-size: 1rem;
     align-items:center;
     justify-content: space-between;
     margin: 0;
+    padding: 0;
   }
+
+  .workshop-desc1 p, .workshop-desc3 p {
+    padding: 1rem;
+  }
+
+.workshop-desc1 {
+  grid-area:1 /4 /1 /6 ;
+  max-width: 70ch;
+}
+
+.workshop-desc2 {
+  grid-area: 2 / 1 / 2 / 3;
+}
+
+
+.workshop-desc3 {
+  grid-area: 3 / 4 / 3 / 6;
+  max-width: 70ch;
+}
 
   .stats {
     margin: 0;
@@ -1655,5 +1702,3 @@ footer {
   }
 
 }
-
-  

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "gsap": "^3.12.7",
+    "split-type": "^0.3.4",
     "swiper": "^11.2.1"
   },
   "devDependencies": {

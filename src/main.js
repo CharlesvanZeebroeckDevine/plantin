@@ -1,20 +1,144 @@
-import './styles/style.css'
 import loadImageAsync from "./utils/loadImageAsync";
 import delay from "./utils/delay";
-
-import { gsap } from "gsap";
-    
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { TextPlugin } from "gsap/TextPlugin";
-
-
-gsap.registerPlugin(ScrollTrigger,TextPlugin);
 
 const $preloaderPercentage = document.querySelector(".preloader__percentage");
 const $preloaderVisual = document.querySelector(".preloader__visual");
 
 let numImagesLoaded = 0;
 let totalImages = 0;
+
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TextPlugin } from "gsap/TextPlugin";
+import SplitType from 'split-type'
+import './styles/style.css'
+
+
+
+gsap.registerPlugin(ScrollTrigger,TextPlugin);
+
+const gsapHero = () => {
+
+const headerTl = gsap.timeline();
+
+const intro = new SplitType('.header_intro', { types: 'words' })
+const desc = new SplitType('.header_desc', { types: 'words' })
+headerTl
+  .from(".word1", {
+    x: "-200%", // Move the word up from the bottom
+    duration: 0.8,
+    ease: "expo.out",
+    delay: 0.5, // Delay the start of the animation
+  })
+  .from(
+    ".word2",
+    {
+      x: "-200%",
+      duration: 0.8,
+      ease: "expo.out",
+    },
+    "-=0.4"
+  )
+  .from(
+    ".word3",
+    {
+      x: "-200%",
+      duration: 0.8,
+      ease: "expo.out",
+    },
+    "-=0.4"
+  )
+  .from(intro.words, {
+    opacity: 0,
+    y: 20,
+    x:-20,
+    duration: 1,
+    stagger: { amount: 0.6 },
+  })
+  .from(desc.words, {
+    opacity: 0,
+    y: 20,
+    x:-20,
+    duration: 1,
+    stagger: { amount: 0.9 },
+  })
+};
+
+const gsapScroll = () => {
+
+const exp1 = new SplitType('#exp1', { types: 'words' })
+const exp2 = new SplitType('#exp2', { types: 'words' })
+const exp3 = new SplitType('#exp3', { types: 'words' })
+
+  const tlRoughStart = gsap.timeline({
+    scrollTrigger: {
+      trigger: '#roughstart', 
+      start: 'top 10%', 
+      end: 'bottom 80%', 
+      scrub: 1, 
+      pin:true,
+
+    },
+    
+  });
+  tlRoughStart.from('#roughstart h2', {
+    opacity: 0,
+    x: -200,
+  })
+    .from(
+      exp1.words,
+      {
+        opacity: 0,
+        y: 10,
+        stagger: 0.1, 
+      },
+    )
+    .from(
+      exp2.words,
+      {
+        opacity: 0,
+        y: 10,
+        stagger: 0.1, 
+      },
+    )
+    .from(
+      exp3.words,
+      {
+        opacity: 0,
+        y: 10,
+        stagger: 0.1, 
+      },
+    )
+    .from(
+      '.metaltype',
+      {
+        y: 300,
+      },
+    )
+
+
+
+
+    const mapdesc1 = new SplitType('.map-desc', { types: 'words' })
+    const mapdesc2 = new SplitType('.map-desc-desk', { types: 'words' })
+
+    
+    const tlAntwerp = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.map-desc-container', 
+        start: 'top center', 
+        end: 'bottom center', 
+        scrub: 1, 
+        markers: true, 
+      },    
+    })
+
+  }
+
+
+
+
+
 
 const loader = async () => {
   $preloaderVisual.classList.add("preloader__visual--has-transition");
@@ -52,18 +176,18 @@ const onProgress = () => {
 };
 
 const preloadComplete = async () => {
-  await delay(6350); // Add extra time for CSS transition to finish
+  await delay(350); 
+  gsapHero();
   document.querySelector("body").classList.remove("overflow-y-hidden");
+  const lottiePlayer = document.getElementById("header-lottie");
+  if (lottiePlayer) {
+    lottiePlayer.play();
+  }
   gsap.to("#loading", {
     duration: 0.5,
     autoAlpha: 0,
     onComplete: () => {
       document.documentElement.classList.remove("is-loading");
-    
-      const lottiePlayer = document.getElementById("header-lottie");
-      if (lottiePlayer) {
-        lottiePlayer.play();
-      }
     },
   });
 };
@@ -636,6 +760,7 @@ const init = () => {
   LettersInteraction();
   setupMusicToggle();
   loader();
+  gsapScroll();
 };
 
 init();
