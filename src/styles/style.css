@@ -87,9 +87,9 @@ h1 {
 }
 
 #musicButton {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
   width: 4rem;
   height: 4rem;
   cursor: pointer;
@@ -290,6 +290,7 @@ h2 {
 .metaltype img {
   width: 60vw;
   margin-top: 2rem;
+  overflow: hidden;
 }
 
 .read-more {
@@ -365,21 +366,21 @@ h2 {
 
 @keyframes pulse {
   0% {
-    transform: scale(1); /* Start at normal size */
+    transform: scale(0.7); 
   }
   50% {
-    transform: scale(1.1); /* Scale up to 120% */
+    transform: scale(1);
   }
   100% {
-    transform: scale(1); /* Return to normal size */
+    transform: scale(0.7); 
   }
 }
 
-/* Apply the animation to the circles */
+
 .marker {
-  transform-box: fill-box; /* Ensures transform-origin is relative to the circle */
-  transform-origin: center; /* Ensures the scaling happens from the center */
-  animation: pulse 3s infinite ease-in-out; /* Looping animation */
+  transform-box: fill-box; 
+  transform-origin: center; 
+  animation: pulse 6s infinite ease-in-out; 
 }
 
 .map-desc {
@@ -458,6 +459,7 @@ line-height: 1.25;
 
 .panel-ref {
   font-size: 0.8rem;
+  margin-top: 0.5rem;
   font-variation-settings: "wdth" 100, "wght" 100;
   font-style: italic;
 }
@@ -879,6 +881,15 @@ footer .cta-plan {
   font-variation-settings: "opsz" 100, "wght" 900;
 }
 
+footer .cta-plan:hover {
+  background-color: var(--color-sec);
+}
+
+footer img {
+  padding-bottom: 2rem;
+}
+
+
 .museum-info {
   font-variation-settings: "wdth" 100, "wght" 100;
   margin: 1rem 0 1rem 0;
@@ -888,14 +899,20 @@ footer .cta-plan {
 }
 
 .copyright {
-  padding-top: 2rem;
+  border-top: var(--color-sec) solid 1px;
+  padding-top: 1rem;
   display: flex;
   justify-content: space-between;
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   font-variation-settings: "wdth" 100, "wght" 200;
 }
 
+
 .stat1, .stat2, .stat3 {
+  overflow: hidden;
+}
+
+.legacy-stats{
   overflow: hidden;
 }
 
@@ -1288,7 +1305,7 @@ font-size: 1rem;
 
 
   #legacy {
-    margin-top: 10rem;
+    padding-top: 10rem;
   }
 #legacy h2 {
   text-align: start;
@@ -1366,6 +1383,10 @@ font-size: 1rem;
   overflow: hidden;
 }
 
+.copyright {
+font-size: 0.6rem;
+}
+
 }
 @media (min-width: 1000px) {
   .info-panel {
@@ -1430,6 +1451,10 @@ font-size: 1rem;
   }
   }
 @media (min-width: 1200px) {
+
+  #antwerp {
+    padding: 5rem 0rem;
+  }
 
 
   .nav__toggle {
@@ -1788,6 +1813,11 @@ footer {
 #legacy {
   margin:15rem 0rem 10rem 0rem;
 }
+
+#bible {
+  padding: 10rem 5rem;
+}
+
 }
 @media (min-width: 1600px) {
   .info-panel {

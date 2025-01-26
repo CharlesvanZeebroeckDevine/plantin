@@ -1,6 +1,22 @@
 import loadImageAsync from "./utils/loadImageAsync";
 import delay from "./utils/delay";
 
+import Swiper from 'swiper';
+
+import {
+  Navigation,
+  Pagination,
+  EffectFlip,
+  EffectCoverflow,
+  EffectCards,
+} from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-flip';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/effect-cards';
+
 const $preloaderVisual = document.querySelector(".preloader__visual");
 
 let numImagesLoaded = 0;
@@ -11,6 +27,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
 import SplitType from 'split-type'
 import './styles/style.css'
+
 
 
 
@@ -82,15 +99,12 @@ const exp3 = new SplitType('#exp3', { types: 'words' })
   tlRoughStart.from('#roughstart h2', {
     opacity: 0,
     x: -200,
-    duration: 2,
-
   })
     .from(
       exp1.words,
       {
         opacity: 0,
         y: 10,
-        duration: 2,
         stagger: 0.1, 
       },
     )
@@ -99,8 +113,7 @@ const exp3 = new SplitType('#exp3', { types: 'words' })
       {
         opacity: 0,
         y: 10,
-        duration: 2,
-        stagger: 0.1, 
+      stagger: 0.1, 
       },
     )
     .from(
@@ -108,7 +121,6 @@ const exp3 = new SplitType('#exp3', { types: 'words' })
       {
         opacity: 0,
         y: 10,
-        duration: 2,
         stagger: 0.1, 
       },
     )
@@ -116,14 +128,16 @@ const exp3 = new SplitType('#exp3', { types: 'words' })
       '.metaltype',
       {
         x: "-100%",
-        ease: "ease.inOut",
+        duration:2,
       },
+      "-=2"
     )
     .from(
       '.exploremap',
       {
         opacity:0,
       },
+      "-=2"
 )
 
 
@@ -169,14 +183,14 @@ const exp3 = new SplitType('#exp3', { types: 'words' })
     })
     tlWorkshopheader.from(
       headerWS.words,{
-        y:"100%",
+        y:"10%",
         opacity:0,
         duration: 0.1,
         stagger: 0.1, 
       },
     )
     .from(
-      ".header-svg",{
+      ".svg-container-ws",{
         opacity:0,
         y:"100%"
       }
@@ -271,7 +285,7 @@ const exp3 = new SplitType('#exp3', { types: 'words' })
     })
     bible.from(
       bibleTitle.words,{
-        y:"100%",
+        y:"10%",
         opacity:0,
         duration: 0.1,
         stagger: 0.05, 
@@ -315,13 +329,13 @@ const exp3 = new SplitType('#exp3', { types: 'words' })
       scrollTrigger: {
         trigger: '#connections', 
         start: 'top center', 
-        end: '20% center', 
+        end: '50% center', 
         scrub: 1, 
       },    
     })
     connection.from(
       connectionTitle.words,{
-        y:"100%",
+        y:"10%",
         opacity:0,
         duration: 0.1,
         stagger: 0.05, 
@@ -350,6 +364,102 @@ const exp3 = new SplitType('#exp3', { types: 'words' })
         stagger:1,
       }
     )
+
+    const legacyTitle = new SplitType('#legacy h2', { types: 'words'})
+    const legacyIntro = new SplitType('.legacy-intro', { types: 'words'})
+    const legacyDesc = new SplitType('.legacy-desc', { types: 'words'})
+
+
+    const legacy = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#legacy', 
+        start: 'top center', 
+        end: '80% center', 
+        scrub: 1, 
+      },    
+    })
+    legacy.from(
+      legacyTitle.words,{
+      y:"10%",
+      opacity:0,
+      duration: 0.1,
+      stagger: 0.05, 
+    },
+  )
+  legacy.from(
+    legacyIntro.words,{
+    y:"10%",
+    opacity:0,
+    duration: 0.5,
+    stagger: 0.05, 
+  },
+)
+.from(
+  ".legacy-stats1",{
+  y:"-120%",
+  duration: 0.5,
+},
+"-=0.2"
+)
+.from(
+  ".legacy-stats2",{
+  y:"120%",
+  duration: 0.5,
+},
+"-=0.3"
+)
+.from(
+  ".legacy-stats3",{
+  y:"-120%",
+  duration: 0.5,
+},
+"-=0.4"
+)
+.from(
+  ".legacy-stats4",{
+  y:"120%",
+  duration: 0.5,
+},
+"-=0.5"
+)
+legacy.from(
+  legacyDesc.words,{
+  y:"10%",
+  opacity:0,
+  duration: 0.5,
+  stagger: 0.05, 
+},
+)
+
+const storyTitle = new SplitType('#stories h2', { types: 'words'})
+const storyDesc = new SplitType('#stories p', { types: 'words'})
+
+
+const story = gsap.timeline({
+  scrollTrigger: {
+    trigger: '#stories', 
+    start: 'top center', 
+    end: '40% center', 
+    scrub: 1, 
+  },    
+})
+story.from(
+  storyTitle.words,{
+  y:"10%",
+  opacity:0,
+  duration: 0.1,
+  stagger: 0.05, 
+},
+)
+.from(
+  storyDesc.words,{
+  y:"10%",
+  opacity:0,
+  duration: 0.1,
+  stagger: 0.05, 
+},
+)
+
 
   }
 
@@ -388,7 +498,7 @@ const onProgress = () => {
 };
 
 const preloadComplete = async () => {
-  await delay(6000); 
+  await delay(5300); 
   gsapHero();
   document.querySelector("body").classList.remove("overflow-y-hidden");
   const lottiePlayer = document.getElementById("header-lottie");
@@ -401,23 +511,6 @@ const preloadComplete = async () => {
     },
   });
 };
-
-import Swiper from 'swiper';
-
-import {
-  Navigation,
-  Pagination,
-  EffectFlip,
-  EffectCoverflow,
-  EffectCards,
-} from 'swiper/modules';
-// Import Swiper and module styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-flip';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/effect-cards';
 
 const coverflowCards = () => {
 
