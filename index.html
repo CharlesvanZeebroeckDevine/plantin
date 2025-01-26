@@ -4,17 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./src/assets/svg/workshop.svg"/>
     <link rel="stylesheet" href="https://use.typekit.net/lml1vsr.css">
-    <style>
-      body {
-          visibility: hidden;
-      }
-  </style>
     <link rel="stylesheet" href="./src/styles/reset.css">
-    <script>
-      window.addEventListener('load', function() {
-          document.body.style.visibility = 'visible';
-      });
-  </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Christophe Plantin</title>
   </head>
@@ -26,7 +16,6 @@
     <div id="loading">
       <div class="preloader__visual">
       </div>
-      <div class="preloader__percentage">0%</div>
     </div>
 
     <button id="musicButton">
@@ -94,7 +83,7 @@
       </div>
     </nav>
 
-    <header id="header" class="gsapWrapper">
+    <header id="header">
       <h1>
         <span class="word1">INK -</span>
         <span class="word2">AND</span>
@@ -151,9 +140,9 @@
     </section>
   
     <!-- Interactive Map Section -->
-    <section id="antwerp" class="gsapWrapper">
+    <section id="antwerp">
       <div id="plantin-in-antwerp">
-      <p class="taptostart">TAP TO START</p>
+      <p class="taptostart">Tap to start exploring.</p>
       <div id="static-map">
         <img class="map-image" src="./src/assets/img/map.png" alt="Static Map" />
       </div>
@@ -168,7 +157,7 @@
     
       <!-- Markers with Years -->
       <g>
-        <circle class="marker" cx="1319" cy="152" r="15" data-year="1549" fill="black" />
+        <circle  cx="1319" cy="152" r="15" data-year="1549" fill="black" />
         <text x="1339" y="162" fill="black">1549</text>
       </g>
       <g>
@@ -235,9 +224,9 @@
             By the mid-1560s, Plantin had turned his workshop, Le Compas d'Or (The Golden Compass), into a force to be reckoned with. He wasn't just a printer; he was a businessman, a strategist, and a visionary. Unlike many printers who operated small, family-run presses, Plantin thought on a grand scale. <br> He dreamed of an industrial operation, and by 1576, he had achieved it:
           </p>
           <div class="stats">
-            <div>16 Presses</div>
-            <div>60 Workers</div>
-            <div>25,000 Books/Year</div>
+            <div class="stat1">16 Presses</div>
+            <div class="stat2">60 Workers</div>
+            <div class="stat3">25,000 Books/Year</div>
           </div>
         </div>
       <div class="workshop-desc2">
@@ -264,13 +253,13 @@
       </div>
       </div>
       <div class="workshop-desc3">
-      <p>
+      <p class="workshop-desc3p">
         Plantin didn’t just rely on talent; he cultivated it. He housed apprentices, employed top scholars, and created a culture of discipline and collaboration. Even so, Plantin’s workers were among the best in Europe, driven by pride in their craft and loyalty to a master who cared about quality.
       </p>
       <div class="stats">
-        <div>14 hours/day</div>
-        <div>6sols/day</div>
-        <div>6day/week</div>
+        <div class="stat4">14 hours/day</div>
+        <div class="stat5">6sols/day</div>
+        <div class="stat6">6day/week</div>
         <p>(a kg of butter costed 60sols)</p>
       </div>
     </div>
@@ -278,7 +267,7 @@
   </div>
     </section>
 
-    <section id="bible" class="gsapWrapper">
+    <section id="bible">
       <h2>The Polyglot Bible</h2>
       <p>Plantin's crowning achievement came in 1572 with the completion of the Polyglot Bible.</p>
       <div class="bible-container">
@@ -291,7 +280,7 @@
         <div class="bible-right">
       <div class="bible-learn">Learn more about it at the museum or in an another interactive story...</div>
       <div class="bible-cta">
-        <div class="cta-plan">Plan your visit</div>
+        <a href="https://museumplantinmoretus.be/en/" class="cta-plan">Plan your visit</a>
         <div class="cta-story">The Secrets of the Polyglot Bible</div>
       </div>
     </div>
@@ -299,7 +288,7 @@
     </section>
   
     <!-- Connections Section -->
-    <section id="connections" class="gsapWrapper">
+    <section id="connections">
       <h2 class="connections-title">Friends and Allies
 
         <span class="svg-container">
@@ -319,7 +308,7 @@
     </section>
   
     <!-- Legacy Section -->
-    <section id="legacy" class="gsapWrapper">
+    <section id="legacy">
       <h2>The End of an Era</h2>
       <p>
         Christophe Plantin died in 1589. His family carried on the business for nine generations, preserving the workshop, now the Plantin-Moretus Museum, a UNESCO World Heritage Site.
@@ -332,10 +321,11 @@
       </div>
       <p>Visitors today can walk through the rooms where Plantin’s presses once roared, where workers bent over their tasks, and where the ideas of a generation took shape.</p>
     </section>
-  <section id="stories" class="gsapWrapper">
+  <section id="stories">
     <h2>The Story Doesn't End Here...</h2>
-    <p>Want to keep learning about Plantin and his legacy? 
+    <p>Want to keep learning about Plantin and his legacy? <br>
       There are 5 more Stories around his universe to be discovered</p>
+      <p style="font-style: italic;"> (coming soon...)</p>
     <div class="stories-container">
         <div>
             <span>Jan Moretus: The Keeper of the Compass</span>
@@ -355,9 +345,9 @@
     </div>
   </section>
 
-<footer class="gsapWrapper"> 
+<footer> 
 <h3>Visit Plantin's Home and Workshop</h3>
-<div class="cta-plan">Plan your visit</div>
+<a href="https://museumplantinmoretus.be/en/" class="cta-plan">Plan your visit</a>
 <div class="footer-container">
 <ul class="museum-info">
   <li>Vrijdagmarkt 22</li>
@@ -369,10 +359,10 @@
 <img src="./src/assets/img/footer.jpg" alt="">
 </div>
 <ul class="copyright">
-<li>Site by Charles van Zeebroeck</li>
+<li><a href="https://www.instagram.com/charles.vanz/">Site by Charles van Zeebroeck</a></li>
 <li>for Integration 3</li>
-<li>devineKask</li>
-<li>references</li>
+<li><a href="https://www.instagram.com/devinekask/">devineKask</a></li>
+<li><a href="https://thoracic-rake-d71.notion.site/Ink-and-Ambition-The-Story-of-Christophe-Plantin-17548fb01fe5808eb8bce86c732334b1">references</a></li>
 </ul>
 </footer>
     <script type="module" src="/src/main.js"></script>

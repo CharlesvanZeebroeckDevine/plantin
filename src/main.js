@@ -1,7 +1,6 @@
 import loadImageAsync from "./utils/loadImageAsync";
 import delay from "./utils/delay";
 
-const $preloaderPercentage = document.querySelector(".preloader__percentage");
 const $preloaderVisual = document.querySelector(".preloader__visual");
 
 let numImagesLoaded = 0;
@@ -23,8 +22,8 @@ const headerTl = gsap.timeline();
 
 const intro = new SplitType('.header_intro', { types: 'words' })
 const desc = new SplitType('.header_desc', { types: 'words' })
-headerTl
-  .from(".word1", {
+
+headerTl.from(".word1", {
     x: "-200%", // Move the word up from the bottom
     duration: 0.8,
     ease: "expo.out",
@@ -74,22 +73,24 @@ const exp3 = new SplitType('#exp3', { types: 'words' })
     scrollTrigger: {
       trigger: '#roughstart', 
       start: 'top 10%', 
-      end: 'bottom 80%', 
-      scrub: 1, 
+      end: 'bottom 20%', 
+      scrub: 2, 
       pin:true,
-
     },
     
   });
   tlRoughStart.from('#roughstart h2', {
     opacity: 0,
     x: -200,
+    duration: 2,
+
   })
     .from(
       exp1.words,
       {
         opacity: 0,
         y: 10,
+        duration: 2,
         stagger: 0.1, 
       },
     )
@@ -98,6 +99,7 @@ const exp3 = new SplitType('#exp3', { types: 'words' })
       {
         opacity: 0,
         y: 10,
+        duration: 2,
         stagger: 0.1, 
       },
     )
@@ -106,17 +108,23 @@ const exp3 = new SplitType('#exp3', { types: 'words' })
       {
         opacity: 0,
         y: 10,
+        duration: 2,
         stagger: 0.1, 
       },
     )
     .from(
       '.metaltype',
       {
-        y: 300,
+        x: "-100%",
+        ease: "ease.inOut",
       },
     )
-
-
+    .from(
+      '.exploremap',
+      {
+        opacity:0,
+      },
+)
 
 
     const mapdesc1 = new SplitType('.map-desc', { types: 'words' })
@@ -129,16 +137,221 @@ const exp3 = new SplitType('#exp3', { types: 'words' })
         start: 'top center', 
         end: 'bottom center', 
         scrub: 1, 
-        markers: true, 
       },    
     })
+    tlAntwerp.from(
+      mapdesc1.words,{
+        opacity: 0,
+        y: 10,
+        duration: 2,
+        stagger: 0.1, 
+      },
+    )
+    .from(
+      mapdesc2.words, {
+        opacity: 0,
+        y: 10,
+        duration: 2,
+        stagger: 0.1, 
+      },
+      "-=0.5"
+    )
+
+    const headerWS = new SplitType('.header-with-svg', { types: 'words' })
+
+    const tlWorkshopheader = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.header-with-svg', 
+        start: 'top center', 
+        end: 'bottom center', 
+        scrub: 1, 
+      },    
+    })
+    tlWorkshopheader.from(
+      headerWS.words,{
+        y:"100%",
+        opacity:0,
+        duration: 0.1,
+        stagger: 0.1, 
+      },
+    )
+    .from(
+      ".header-svg",{
+        opacity:0,
+        y:"100%"
+      }
+    )
+
+    const desc1 = new SplitType('.workshop-desc1 p', { types: 'words' })
+    const desc2 = new SplitType('.workshop-desc2 p', { types: 'words' })
+    const desc3 = new SplitType('.workshop-desc3p', { types: 'words' })
+
+    const tlWorkshop = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.workshop-container', 
+        start: 'top center', 
+        end: '50% center', 
+        scrub: 1, 
+      },    
+    })
+    tlWorkshop.from(
+      desc1.words,{
+        y:"100%",
+        duration: 0.1,
+        opacity:0,
+        stagger: 0.1, 
+      },
+    )
+    .from(
+      ".stat2", {
+        y:100,
+        opacity:0,
+      },
+      "-1"
+    )
+    .from(
+      ".stat3", {
+        y:100,
+        opacity:0,
+      },
+      "-0.8"
+    )
+    .from(
+      ".stat1", {
+        y:100,
+        opacity:0,
+      },
+      "-0.5"
+    )
+    .from(
+      desc2.words,{
+        y:"100%",
+        duration: 0.1,
+        opacity:0,
+        stagger: 0.1, 
+      },
+    )
+    .from(
+      desc3.words,{
+        y:"100%",
+        duration: 0.1,
+        opacity:0,
+        stagger: 0.1, 
+      },
+    )
+    .from(
+      ".stat5", {
+        y:100,
+        opacity:0,
+      },
+    )
+    .from(
+      ".stat6", {
+        y:100,
+        opacity:0,
+      },
+    )
+    .from(
+      ".stat4", {
+        y:100,
+        opacity:0,
+      },
+    )
+
+    const bibleTitle = new SplitType('#bible h2', { types: 'words'})
+    const bibledesc = new SplitType('#bible p', { types: 'words'})
+
+    const bible = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#bible', 
+        start: 'top center', 
+        end: '50% center', 
+        scrub: 1, 
+      },    
+    })
+    bible.from(
+      bibleTitle.words,{
+        y:"100%",
+        opacity:0,
+        duration: 0.1,
+        stagger: 0.05, 
+      },
+      "+=0.2"
+    )
+    .from(
+      bibledesc.words,{
+        opacity:0,
+        duration: 0.1,
+        stagger: 0.05, 
+      },
+      "-=0.3"
+    )
+    .from(
+      ".bible-img",{
+        x:"-200%",
+      },
+    )
+    .from(
+      ".bible-learn", {
+        opacity:0,
+        y:"200%",
+        stagger:0.5,
+      }
+    )
+    .from(
+      ".bible-cta", {
+        opacity:0,
+        y:"200%",
+        stagger:0.5,
+      }
+    )
+
+
+    const connectionTitle = new SplitType('.connections-title', { types: 'words'})
+    const connectionDesc = new SplitType('.connections-desc', { types: 'words'})
+
+
+    const connection = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#connections', 
+        start: 'top center', 
+        end: '20% center', 
+        scrub: 1, 
+      },    
+    })
+    connection.from(
+      connectionTitle.words,{
+        y:"100%",
+        opacity:0,
+        duration: 0.1,
+        stagger: 0.05, 
+      },
+    )
+    .from(
+      ".svg-container",{
+        y:"100%",
+        opacity:0,
+        duration: 0.1,
+      },
+      "-=0.2"
+    )
+    .from(
+      connectionDesc.words,{
+        opacity:0,
+        duration: 0.1,
+        stagger: 0.05, 
+      },
+    )
+    .from(
+      "#letter-container",{
+        x:"-100%",
+        opacity:0,
+        duration: 0.1,
+        stagger:1,
+      }
+    )
 
   }
-
-
-
-
-
 
 const loader = async () => {
   $preloaderVisual.classList.add("preloader__visual--has-transition");
@@ -171,18 +384,15 @@ const onProgress = () => {
     relativeProgress,
     progressPercentage
   );
-  $preloaderPercentage.textContent = `${progressPercentage}%`;
   $preloaderVisual.style.transform = `scale3d(1, ${relativeProgress}, 1)`;
 };
 
 const preloadComplete = async () => {
-  await delay(350); 
+  await delay(6000); 
   gsapHero();
   document.querySelector("body").classList.remove("overflow-y-hidden");
   const lottiePlayer = document.getElementById("header-lottie");
-  if (lottiePlayer) {
-    lottiePlayer.play();
-  }
+  lottiePlayer.play();
   gsap.to("#loading", {
     duration: 0.5,
     autoAlpha: 0,
@@ -480,13 +690,13 @@ const LettersInteraction = () => {
       const detailViewHTML = `
         <div class="detail-view">
         <div class="detail-about">
-          <img src="${letter.img}" alt="${letter.title}" />
+          <img class="detailview-img" src="${letter.img}" alt="${letter.title}" />
         <div class="detail-namedesc">
           <h2>${letter.title}</h2>
           <p>${letter.who}</p>
           </div>
         </div>
-          <ul>
+          <ul class="detail-fact">
             ${letter.connection.map((conn) => `<li>${conn}</li>`).join('')}
           </ul>
           <p class="notable-detail">${letter.notableDetail}</p>
@@ -495,10 +705,65 @@ const LettersInteraction = () => {
   
       // Insert the HTML into the container
       container.innerHTML = detailViewHTML;
-    } else {
-      fetchAndInjectSVG(container, letter);
-    }
-  };
+
+       // Select the newly created `.detail-view`
+    const detailView = container.querySelector('.detail-view');
+
+    // Initialize SplitType for the current detail view
+    const nameAndDesc = new SplitType(detailView.querySelector('.detail-namedesc'), { types: 'words' });
+    const detailFact = new SplitType(detailView.querySelector('.detail-fact'), { types: 'words' });
+
+    // GSAP animation scoped to the current detail view
+    const connectionDetail = gsap.timeline();
+
+    connectionDetail
+      .from(detailView, {
+        opacity: 0,
+        scale: 0.5,
+        duration: 0.8,
+        ease: 'power2.out',
+      })
+      .from(
+        detailView.querySelector('.detailview-img'),
+        {
+          opacity: 0,
+          y: 100,
+          duration: 1.2,
+          ease: 'expo.out',
+        },
+        "-=0.8"
+      )
+      .from(
+        nameAndDesc.words,
+        {
+          opacity: 0,
+          y: 10,
+          duration: 1,
+          stagger: 0.1,
+        },
+        "-=0.8"
+      )
+      .from(
+        detailFact.words,
+        {
+          opacity: 0,
+          y: 10,
+          duration: 0.5,
+          stagger: 0.1,
+        },
+        "-=1.8"
+      )
+      .from(
+        detailView.querySelector('.notable-detail'),
+        {
+          opacity: 0,
+        },
+        "-=1.2"
+      );
+  } else {
+    fetchAndInjectSVG(container, letter);
+  }
+};
 
   const createLetterDiv = (letter) => {
     const letterDiv = document.createElement('div');
@@ -630,9 +895,11 @@ const showInfoPanel = (data) => {
 
   // Populate the panel with data
   panel.innerHTML = `
+  <div class="panel-top">
         <p class="panel-year">${data.year}</p>
         <h2 class="panel-title">${data.title}</h2>
         <p class="panel-location">${data.location}</p>
+      </div>
         <p class="panel-desc">${data.description}</p>
         <div class="panel-imgcontainer">
         <img class="panel-img" src="${data.image}" alt="${data.title}" />
@@ -694,6 +961,8 @@ const desktopMap = () => {
     const mapContainer = document.getElementById("antwerp"); // Parent container
     let panel = document.querySelector(".info-panel");
 
+    
+
     if (!panel) {
         // Create the panel if it doesn't exist
         panel = document.createElement("div");
@@ -702,6 +971,7 @@ const desktopMap = () => {
         // Append the panel to the map container
         mapContainer.appendChild(panel);
     }
+
 
     // Update the content of the panel
     panel.innerHTML = `
@@ -716,10 +986,75 @@ const desktopMap = () => {
           </div>
         </div>
     `;
+
+    const tlpanel = gsap.timeline();
+
+    const panelyear = new SplitType('.panel-year', { types: 'words, chars' })
+    const paneltitle = new SplitType('.panel-title', { types: 'words, chars' })
+    const panelloc = new SplitType('.panel-location', { types: 'words, chars' })
+    const paneldesc = new SplitType('.panel-desc', { types: 'words, chars' })
+
+    tlpanel.from(
+      ".info-panel",
+      {
+        opacity: 0, 
+        duration:"0.1",
+      },
+      )
+    .from(
+      ".panel-container", {
+        y:"200%",
+        duration: 1, 
+        ease: "ease.inOut",
+      }
+    )
+    .from(
+      ".panel-imgcontainer", {
+        x:"200%",
+        duration: 1, 
+        ease: "ease.inOut",
+      },
+      "-=0.5",
+    )
+    .from(
+      panelyear.chars, {
+        opacity: 0,
+        y: 20,
+        duration: 0.5,
+        stagger:0.1,
+      },
+      "-=0.5",
+    )
+    .from(
+      paneltitle.words, {
+        opacity: 0,
+        y: 10,
+        duration: 0.5,
+        stagger:0.1,
+      },
+      "-=0.5",
+    )
+    .from(
+      panelloc.words, {
+        opacity: 0,
+        x: 20,
+        duration: 0.5,
+        stagger:0.1,
+      },
+      "-=0.5",
+    )
+    .from(
+      paneldesc.words, {
+        opacity: 0,
+        y: 5,
+        duration: 0.5,
+        stagger:0.05,
+      },
+      "-=0.5",
+    )
 };
 
 
-  // Attach click event listeners to markers
   markers.forEach((marker) => {
       marker.addEventListener("click", async (event) => {
           const year = event.target.dataset.year;
@@ -743,24 +1078,27 @@ const desktopMap = () => {
 };
 
 const init = () => {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const shouldAnimate = !prefersReducedMotion.matches;
+
   if (window.innerWidth >= 1200) {
     flipCards();
     desktopMap();
-  }
-  else if (window.innerWidth >= 840) {
+    if (shouldAnimate) gsapScroll();
+  } else if (window.innerWidth >= 840) {
     desktopMap();
     coverflowCards();
     nav();
-} else if (window.innerWidth < 840){
+    if (shouldAnimate) gsapScroll();
+  } else if (window.innerWidth < 840) {
     expandableText();
     nav();
     coverflowCards();
     mobileMap();
-};
+  }
   LettersInteraction();
   setupMusicToggle();
   loader();
-  gsapScroll();
 };
 
 init();
