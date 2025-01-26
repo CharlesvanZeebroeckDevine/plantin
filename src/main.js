@@ -29,8 +29,6 @@ import SplitType from 'split-type'
 import './styles/style.css'
 
 
-
-
 gsap.registerPlugin(ScrollTrigger,TextPlugin);
 
 const gsapHero = () => {
@@ -817,16 +815,6 @@ const LettersInteraction = () => {
         ease: 'power2.out',
       })
       .from(
-        detailView.querySelector('.detailview-img'),
-        {
-          opacity: 0,
-          y: 100,
-          duration: 1.2,
-          ease: 'expo.out',
-        },
-        "-=0.8"
-      )
-      .from(
         nameAndDesc.words,
         {
           opacity: 0,
@@ -836,6 +824,15 @@ const LettersInteraction = () => {
         },
         "-=0.8"
       )
+      .from(
+        detailView.querySelector('.detailview-img'),
+        {
+          opacity: 0,
+          y: 100,
+          duration: 1.2,
+          ease: 'ease.in',
+        },
+        "-=0.5")
       .from(
         detailFact.words,
         {
@@ -853,6 +850,7 @@ const LettersInteraction = () => {
         },
         "-=1.2"
       );
+
   } else {
     fetchAndInjectSVG(container, letter);
   }
